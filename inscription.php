@@ -1,6 +1,15 @@
 
 
 <!DOCTYPE html>
+<?php
+
+	if(isset($_POST["isconnected"]))
+	{
+		header("index.php");
+	}
+	
+?>
+
 <html lang="fr">
 
 	<head>

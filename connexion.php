@@ -1,4 +1,9 @@
-
+<?php
+	if(isset($_POST["isconnected"]))
+	{
+		header("index.php");
+	}
+?>
 
 <!DOCTYPE html>
 <html lang="fr">
