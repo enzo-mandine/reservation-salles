@@ -10,7 +10,7 @@
 </head>
 
 <body class="mp0">
-    <?php include("header"); ?>
+    <?php include("header.php"); ?>
     <main>
 
     </main>
@@ -22,13 +22,3 @@
 </body>
 	
 </html>
-
-
-<?php
-
-
-	
-
-
-
-?>
