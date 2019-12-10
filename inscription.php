@@ -27,7 +27,7 @@
 						<input class="" type="password" name="password" placeholder="******" required>
 						<label for="passwordconfirm">Confirmez le password</label>
 						<input class="" type="password" name="passwordconfirm" placeholder="******" required>
-						<input id="" class="" name="submit" type="submit" value="connexion">
+						<input id="" class="" name="submit" type="submit" value="inscription">
 					</form>
 				</section>
 			</div>
@@ -42,8 +42,8 @@
 
 </html>
 
-
 <?php	
+
 	if (isset($_POST["submit"])) {
 		if ($_POST["password"] == $_POST["passwordconfirm"]) {
 			$result = sql_request("SELECT * FROM `utilisateurs` WHERE login = '".$_POST["login"]."'", true);
