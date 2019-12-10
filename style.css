@@ -1,0 +1,22 @@
+body {
+    background-color: #88c1d0;
+}
+header {
+    padding: 10px;
+}
+.mp0 {
+    margin: 0;
+    padding: 0;
+}
+.ul_style_none{
+    list-style: none;
+}
+
+.ul_style_none>li {
+    margin-right: 20px;
+}
+
+.flexr {
+    display: flex;
+    flex-direction: row;
+}
