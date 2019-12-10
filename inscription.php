@@ -14,6 +14,7 @@
 
 	<body>
 		<?php include("header.php"); ?>
+		
 		<main>
 			<div id="" class="">
 				<section id="" class="">
@@ -42,9 +43,7 @@
 </html>
 
 
-<?php
-
-	
+<?php	
 	if (isset($_POST["submit"])) {
 		if ($_POST["password"] == $_POST["passwordconfirm"]) {
 			$result = sql_request("SELECT * FROM `utilisateurs` WHERE login = '".$_POST["login"]."'", true);
