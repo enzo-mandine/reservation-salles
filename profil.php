@@ -1,6 +1,3 @@
-
-
-<!DOCTYPE html>
 <?php
 
 	if(isset($_POST["isconnected"]))
@@ -10,6 +7,7 @@
 	
 ?>
 
+<!DOCTYPE html>
 <html lang="fr">
 
 	<head>
@@ -27,12 +25,12 @@
 		<main>
 			<div id="" class="">
 				<section id="" class="">
-					<p id="" class="">Veuillez vous enregistrer pour prendre un créneau.</p>
-					<form class="" action="inscription.php" method="POST">
+					<p id="" class="">Profil de <?php echo $_SESSION["login"]; ?></p>
+					<form class="" action="" method="POST">
 						<label for="login">Login</label>
-						<input class="" type="text" name="login" placeholder="Login" required>
+						<input class="" type="text" name="login" value="<?php echo $_SESSION["login"]; ?>" required>
 						<label for="password">Password</label>
-						<input class="" type="password" name="password" placeholder="******" required>
+						<input class="" type="password" name="password" required>
 						<label for="passwordconfirm">Confirmez le password</label>
 						<input class="" type="password" name="passwordconfirm" placeholder="******" required>
 						<input id="" class="" name="submit" type="submit" value="inscription">
@@ -50,18 +48,21 @@
 
 </html>
 
-<?php	
 
-	if (isset($_POST["submit"])) {
-		if ($_POST["password"] == $_POST["passwordconfirm"]) {
-			$result = sql_request("SELECT * FROM `utilisateurs` WHERE login = '".$_POST["login"]."'", true);
-			if(empty($result[0]))
-			{
-				sql_request("INSERT INTO utilisateurs (`id`, `login`, `password`) 
-							 VALUES (NULL, '".htmlspecialchars($_POST["login"])."',
-							 '" . password_hash($_POST["password"], PASSWORD_DEFAULT)."');");
-				header("location:connexion.php");
-			}
+
+
+<?php
+
+	if(isset($_POST["submit"]))
+	{
+		if($_POST["password"] == $_POST["passwordconfirm"])
+		{
+			$res = sql_request("SELECT login, password FROM utilisateurs WHERE id = '".$_SESSION["id"]."'",true,true);
+			var_dump($res);
 		}
 	}
+	
+
+
+
 ?>

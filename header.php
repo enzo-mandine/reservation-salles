@@ -22,12 +22,7 @@
 <?php			} else { ?>
 					<a class='' href='index.php?logout=true'>Deconnexion</a>
 					<a class='' href='profil.php'>Mon compte</a>
-<?php			}
-				?>
-			</li>
-			
-			<li>
-
+<?php			}?>
 			</li>
 			
 		</ul>
