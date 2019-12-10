@@ -1,8 +1,10 @@
 <?php   
+	session_start();
 	include("function.php");
 	
 	if (isset($_GET["logout"])) {
 		session_destroy();
+		header("location:index.php");
 	}
 ?>
 
@@ -14,21 +16,18 @@
 			<li><a href=""><!--INSERT RESERVATION-FORM.PHP HERE--></a></li>
 			
 			<li class="">
-				<?php if (isset($_SESSION["isconnected"])) { // Variable de session pour check la connexion de l'utilisateur ($_SESSION["isconnected"] == $_POST["login"])
-					echo "<a class='' href='<!--INSERT PROFIL.PHP HERE-->'>Mon compte</a>";
-				} else {
-					echo "<a class='' href='<!--INSERT CONNEXION.PHP HERE-->'>Connexion</a>";
-				}
+<?php 			if (!isset($_SESSION["isconnected"])) { ?>
+					<a class='' href='inscription.php'>Inscription</a>
+					<a class='' href='connexion.php'>Connexion</a>
+<?php			} else { ?>
+					<a class='' href='index.php?logout=true'>Deconnexion</a>
+					<a class='' href='profil.php'>Mon compte</a>
+<?php			}
 				?>
 			</li>
 			
 			<li>
-				<?php if (isset($_SESSION["isconnected"])) {
-					echo "<a class='' href='<!--INSERT INDEX.PHP HERE-->?logout=true'>Deconnexion</a>"; // GET pour la deconnexion (?logout=true)
-				} else {
-					echo "<a class='' href='inscription.php'>Inscription</a>";
-				}
-				?>
+
 			</li>
 			
 		</ul>
