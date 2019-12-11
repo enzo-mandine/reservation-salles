@@ -21,6 +21,7 @@
 
 	<body class="mp0">
 		<?php 
+			include("header.php");
 			if(isset($_GET["error"]))
 			{
 				if($_GET["error"] == 0)
@@ -49,7 +50,6 @@
 <?php			}
 			}
 
-			include("header.php");
 		?>
 			
 		
