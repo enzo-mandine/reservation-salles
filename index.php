@@ -12,7 +12,7 @@
 		<?php include("header.php"); ?>
 		
 		<main>
-
+			
 		</main>
 		
 		<footer>
