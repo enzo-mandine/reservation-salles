@@ -28,16 +28,23 @@
 					{
 						$_SESSION["try"] = 3;
 						
+					}
+					
+					$_SESSION["try"] -= 1;
+					
+					if($_SESSION["try"] == 0)
+					{
+						$_SESSION["block"] = time();
+						unset($_SESSION["try"]);
+						header("location:connexion.php");
 					}?>
-				
+					
 					<div id="greyScreen">
-						<p id="err">Mot de passe ou login incorrect <a href="connexion.php"><img src="Images/closeBtn.png"/></a></p>
+						<p id="err">Mot de passe ou login incorrect <a href="connexion.php"><img src="Images/closeBtn.png"/></a><br/>
+						<?php echo $_SESSION["try"]; ?> essais restant.</p>
 					</div>
-<?php				
-					
-					
-				
-				}	?>
+		<?php	}
+			}?>
 		
 		<main>
 			<div id="" class="">

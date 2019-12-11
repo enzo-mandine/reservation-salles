@@ -6,7 +6,21 @@
 		session_destroy();
 		header("location:index.php");
 	}
-?>
+	
+	if(isset($_SESSION["block"]))
+	{
+		if(time() - $_SESSION["block"] > 60)
+		{
+			unset($_SESSION["block"]);
+			header("location:index.php");
+		}	?>
+		
+		<div id="greyScreen">
+			<p id="err">Vous etes bloqué pour 60 secondes</p>
+		</div>
+		
+<?php
+	}	?>
 
 <header>
 	<nav class="flexr">
