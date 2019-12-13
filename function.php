@@ -15,11 +15,18 @@
 				return mysqli_fetch_all($query);				
 			}
 		}
-		
 		mysqli_close($conn);
+	}	
+	
+	function required($form)
+	{
+		foreach($form as $input)
+		{
+			if(empty($input))
+			{
+				return false;
+			}
+		}
+		return true;
 	}
-	
-	
-	
-	
 ?>

@@ -48,9 +48,7 @@
 					</div>
 					
 <?php			}
-			}
-
-		?>
+			}     ?>
 			
 		
 		<main>
@@ -87,10 +85,7 @@
 </html>
 
 
-
-
 <?php
-
 	if(isset($_POST["submit"]))
 	{
 		if($_POST["password"] == $_POST["passwordconfirm"])
@@ -132,5 +127,4 @@
 			header("location:profil.php?error=2");
 		}
 	}
-	q
 ?>

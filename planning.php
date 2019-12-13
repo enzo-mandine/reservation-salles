@@ -1,75 +1,22 @@
-<table>
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<link rel="stylesheet" href="style.css">
+		<title>Accueil</title>
+	</head>
 
-
-<?php
-	$days = array("Lundi","Mardi","Mercredi","Jeudi","Vendredi");
-	$row = 7;
-	
-	while($row < 20)
-	{ 
-		$column = 0;
+	<body class="mp0">		
+		<main>
+			<?php include("plann.php"); ?>
+		</main>
 		
-		if($row == 7)
-		{
-			echo "<thead>";
-		}
-		else
-		{
-			echo "<tr>";
-		}
-
-		while($column < 6)
-		{
-			if($row == 7 && $column > 0)
-			{
-				echo "<th>".$days[$column-1]."</th>";
-			}
-			else if($column == 0 && $row > 7)
-			{
-				echo "<td>".$row."</td>";
-			}
-			else if($column == 0 && $row == 7)
-			{
-				echo "<td></td>";
-			}
-			else
-			{
-				echo "<td>";
-					
-				echo "</td>";				
-			}
-			
-			$column ++;
-		}
-		
-		if($row == 7)
-		{
-			echo "</thead>";
-		}
-		else
-		{
-			echo "</tr>";			
-		}
-		$row++;
-	}
-
-?>
-
-
-</table>
-
-
-<style>
-	table th
-	{
-		width:150px;
-	}
-	
-	table
-	{
-		text-align:center;
-	}
-
-
-
-</style>
+		<footer>
+			<div>
+				<p>Réservations de salles - Laplateforme</p>
+			</div>
+		</footer>
+	</body>
+</html>

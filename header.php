@@ -24,28 +24,33 @@
 
 <header>
 	<nav class="flexr">
-		<ul class="ul_style_none flexr ">
-			<li class=""> <a href="">Accueil</a></li>
-			<li class=""> <a href="">Reservation</a></li>
-			<li><a href=""><!--INSERT RESERVATION-FORM.PHP HERE--></a></li>
+		<ul class="ul_style_none flexr mp0">
+			<li> <a href="">Accueil</a></li>
+			<li> <a href="">Reservation</a></li>
+			<li><a href="reservation-form.php">reservation-form</a></li>
 			
-<?php 			if (!isset($_SESSION["isconnected"])) { ?>
-					<li class="">
-						<a class='' href='inscription.php'>Inscription</a>
-					</li>
-					
-					<li>
-						<a class='' href='connexion.php'>Connexion</a>
-					</li>
-<?php			} else { ?>
-					<li>
-						<a class='' href='index.php?logout=true'>Deconnexion</a>
-					</li>
-					
-					<li>
-						<a class='' href='profil.php'>Mon compte</a>
-					</li>
-<?php			}?>
+<?php		if (!isset($_SESSION["isconnected"])) { ?>
+				<li class="">
+					<a class='' href='inscription.php'>Inscription</a>
+				</li>
+				
+				<li>
+					<a class='' href='connexion.php'>Connexion</a>
+				</li>
+				
+	<?php			} else { ?>
+				<li>
+					<a class='' href='index.php?logout=true'>Deconnexion</a>
+				</li>
+				
+				<li>
+					<a class='' href='profil.php'>Mon compte</a>
+				</li>
+
+				<li>
+					<a class='' href='planning.php'>Planning</a>
+				</li>
+<?php		}?>
 			
 			
 		</ul>
