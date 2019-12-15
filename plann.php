@@ -1,8 +1,11 @@
+<?php 	
+	include("header.php");
+?>
+
 <table>
 
 <?php
 
-	include("header.php");
 	$year = getdate()["year"];
 	$day_of_year = getdate()["yday"];
 	
