@@ -12,6 +12,19 @@
 		<?php include("header.php"); ?>
 		
 		<main>
+			<?php if(!isset($_SESSION["isconnected"])) { ?>
+				<article>
+					<h1>LaPlatefrome_ réservation Salle audio/vidéo</h1>
+					<p>Pour pouvoir réserver, <a href="connexion.php">connectez-vous</a> ou <a href="inscritpion.php">inscrivez-vous</a>. </p>
+				</article>
+			<?php } else {  ?>
+			
+			<?php  } ?>
+
+			<article>
+				<h1>Commemt réserver ?</h1>
+				<p>Apres vous etre créer un compte, conectez vous puis rendez vous sur <a href="reservation-form.php">réservation</a> pour y inscrire votre réservation</p>
+			</article>
 			
 		</main>
 		
