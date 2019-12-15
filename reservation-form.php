@@ -1,9 +1,4 @@
 <?php
-
-	if(isset($_POST["isconnected"]))
-	{
-		header("index.php");
-	}
 	
 	if(isset($_GET["row"]) && isset($_GET["column"]))
 	{
@@ -66,6 +61,12 @@
 
 
 <?php
+
+	if(!isset($_SESSION["isconnected"]))
+	{
+		header("index.php");
+	}
+
 	if(isset($_POST["submitBtn"]))
 	{
 		if(required($_POST))
@@ -77,26 +78,18 @@
 			$hourDebut   = 	$_POST["hourDebut"];
 			$hourFin 	 =	$_POST["hourFin"];
 			
-			sql_request("INSERT INTO `reservations` (`id`, `titre`, `description`, `debut`, `fin`, `id_utilisateur`)
-						VALUES (NULL,'".$titre."', '".$description."', '".$dateDebut." ".$hourDebut."' ,
-						'".$dateFin." ".$hourFin."' , '".$_SESSION["id"]."')");			
+			$isFree = sql_request("SELECT ID FROM reservations WHERE debut = '".$dateDebut." ".$hourDebut."'",true,true);
+			if(empty($isFree))
+			{
+				sql_request("INSERT INTO `reservations` (`id`, `titre`, `description`, `debut`, `fin`, `id_utilisateur`)
+							VALUES (NULL,'".$titre."', '".$description."', '".$dateDebut." ".$hourDebut."' ,
+							'".$dateFin." ".$hourFin."' , '".$_SESSION["id"]."')");							
+			}
+			else
+			{
+				header("location:reservation-form.php?error=5");
+			}
+			
 		}
 	}
 ?>
-
-
-<style>
-	.inputZone
-	{
-		display:flex;
-		width:200px;
-		justify-content:row
-	}
-	
-	form
-	{
-		display:flex;
-		flex-direction:column;
-		width:300px;
-	}
-</style>
