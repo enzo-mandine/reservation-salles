@@ -19,7 +19,7 @@ if (isset($_SESSION["block"])) {
 
 <?php
 }	?>
-
+<link rel="stylesheet" href="style.css">
 <header>
 	<nav class="flexr">
 		<ul class="ul_style_none flexr ">

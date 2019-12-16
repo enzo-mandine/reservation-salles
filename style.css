@@ -3,8 +3,7 @@ body {
 }
 header {
 	padding: 10px;
-	height: 3vh;
-	background-color: aliceblue;
+	background-color: blanchedalmond;
 }
 .mp0 {
     margin: 0;
@@ -52,4 +51,59 @@ header {
 	margin-right:2px;
 	margin-bottom:2px;
 	float:right;
+}
+
+
+/* anim */
+@keyframes slideleft
+{
+	from {
+		left: -100vw;
+	}
+	to {
+		left: 73vw;
+	}
+}
+
+@keyframes slideright
+{
+	from {
+		right: -100vw;
+	}
+	to {
+		right: 73vw;
+	}
+}
+#wrapper
+{
+	overflow: hidden;
+}
+
+#left
+{
+	position: relative;
+	height: 75vh;
+	width: 25vw;
+	background-color: rgba(38, 48, 189, 0.4);
+	animation-duration: 2s;
+	animation-name: slideleft;
+	animation-fill-mode: forwards;
+}
+
+#middle
+{
+	height: 75vh;
+	width: 50vw;
+	background-color: burlywood;
+}
+
+#right
+{
+	position: relative;
+	height: 75vh;
+	width: 25vw;
+	background-color: rgb(150, 127, 255);
+	animation-duration: 2s;
+	animation-name: slideright;
+	animation-fill-mode: forwards;
 }
