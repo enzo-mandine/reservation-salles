@@ -18,11 +18,22 @@
 		}	?>
 
 		<div id="greyScreen">
-			<p id="err">Vous etes bloqué pour 60 secondes</p>
+			<p id="err">Vous etes bloqué pour 60 secondes (<?php echo time()-$_SESSION["block"]; ?>)</p>
 		</div>
 
 <?php
-	}	?>
+	}	
+	if(isset($_GET["error"]))
+	{
+		if($_GET["error"] == 1)
+		{?>
+			<div id="greyScreen">
+			<p id="err">Vous etes déja connecté.</p>
+		</div>
+<?php	}
+	}
+	
+	?>
 	
 <header>
 	<nav id="nav_header" class="flexr">

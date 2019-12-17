@@ -1,3 +1,19 @@
+<?php
+	if (isset($_SESSION["block"])) 
+	{
+		if (time() - $_SESSION["block"] > 60) 
+		{
+			unset($_SESSION["block"]);
+			header("location:index.php");
+		}	?>
+
+		<div id="greyScreen">
+			<p id="err">Vous etes bloqué pour 60 secondes</p>
+		</div>
+
+<?php
+	}	?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -11,8 +27,8 @@
 
 <body class="mp0">
 
+	<?php include("header.php"); ?>
 	<main>
-		<?php include("header.php"); ?>
 		<article id="intro">Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum, a inventore optio officiis qui quod perferendis provident temporibus iure libero, vero sit distinctio aliquid consequuntur nisi quis eaque, laborum veniam? Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sit quibusdam illo placeat tenetur esse magni id sunt eos, perspiciatis nihil. Minus doloremque nisi dolores eum autem dolorem maiores quos laborum! Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas esse modi quo quasi praesentium laudantium odit rem, culpa quidem deserunt ratione explicabo blanditiis. Odit illo earum nesciunt autem. Eveniet, dolorum.</article>
 		<a href=<?php if (isset($_SESSION["isconnected"])) {
 					echo "planning.php";
