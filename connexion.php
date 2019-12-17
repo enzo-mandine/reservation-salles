@@ -16,9 +16,8 @@ if (isset($_POST["isconnected"])) {
 	<title>Inscription</title>
 </head>
 
-<body>
+<body class="mp0">
 	<?php
-	include("header.php");
 	if (isset($_GET["error"])) {
 		if ($_GET["error"] == 0) {
 			if (!isset($_SESSION["try"])) {
@@ -41,15 +40,18 @@ if (isset($_POST["isconnected"])) {
 			} ?>
 
 	<main>
-		<div id="" class="">
+		<?php
+			include("header.php");
+		?>
+		<div id="box" class="">
 			<section id="" class="">
-				<p id="" class="">Page de connexion</p>
-				<form class="" action="" method="POST">
+				<p id="" class="txt_center">Connectez-vous !! :-D</p>
+				<form class="flexc" action="" method="POST">
 					<label for="login">Login</label>
-					<input class="" type="text" name="login" placeholder="Login" required>
+					<input class="mb15 input" type="text" name="login" placeholder="Login" required>
 					<label for="password">Password</label>
-					<input type="password" name="password" required>
-					<input name="submit" type="submit" value="connexion">
+					<input class="mb15 input" type="password" name="password" placeholder="******" required>
+					<input class="button gradient-border" name="submit" type="submit" value="connexion">
 				</form>
 			</section>
 		</div>

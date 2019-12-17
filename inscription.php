@@ -1,65 +1,61 @@
-
-
 <!DOCTYPE html>
 <?php
 
-	if(isset($_POST["isconnected"]))
-	{
-		header("index.php");
-	}
-	
+if (isset($_POST["isconnected"])) {
+	header("index.php");
+}
+
 ?>
 
 <html lang="fr">
 
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta http-equiv="X-UA-Compatible" content="ie=edge">
-		<link rel="stylesheet" href="style.css">
-		<link href="https://fonts.googleapis.com/css?family=Caveat|Open+Sans|Roboto&display=swap" rel="stylesheet">
-		<title>Inscription</title>
-	</head>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="style.css">
+	<link href="https://fonts.googleapis.com/css?family=Caveat|Open+Sans|Roboto&display=swap" rel="stylesheet">
+	<title>Inscription</title>
+</head>
 
-	<body>
-		<?php include("header.php"); ?>
-		
-		<main>
-			<div id="" class="">
-				<section id="" class="">
-					<p id="" class="">Veuillez vous enregistrer pour prendre un créneau.</p>
-					<form class="" action="inscription.php" method="POST">
-						<label for="login">Login</label>
-						<input class="" type="text" name="login" placeholder="Login" required>
-						<label for="password">Password</label>
-						<input class="" type="password" name="password" placeholder="******" required>
-						<label for="passwordconfirm">Confirmez le password</label>
-						<input class="" type="password" name="passwordconfirm" placeholder="******" required>
-						<input id="" class="" name="submit" type="submit" value="inscription">
-					</form>
-				</section>
-			</div>
-		</main>
-		
-		<footer>
-			<div id="" class="">
-				<p class="">Réservations de salles - Laplateforme</p>
-			</div>
-		</footer>
-	</body>
+<body class="mp0">
+	<?php include("header.php"); ?>
+
+	<main>
+		<div id="" class="">
+			<section id="box" class="">
+				<p id="" class="">Veuillez vous enregistrer pour reserver un créneau.</p>
+				<form class="flexc" action="inscription.php" method="POST">
+					<label for="login">Login</label>
+					<input class="mb15 input" type="text" name="login" placeholder="Login" required>
+					<label for="password">Password</label>
+					<input class="mb15 input" type="password" name="password" placeholder="******" required>
+					<label for="passwordconfirm">Confirmez le password</label>
+					<input class="mb15 input" type="password" name="passwordconfirm" placeholder="******" required>
+					<input id="" class="button gradient-border" name="submit" type="submit" value="Valider">
+				</form>
+			</section>
+		</div>
+	</main>
+
+	<footer>
+		<div id="" class="">
+			<p class="">Réservations de salles - Laplateforme</p>
+		</div>
+	</footer>
+</body>
 
 </html>
 
-<?php	
+<?php
 
 	if (isset($_POST["submit"])) {
 		if ($_POST["password"] == $_POST["passwordconfirm"]) {
-			$result = sql_request("SELECT * FROM `utilisateurs` WHERE login = '".$_POST["login"]."'", true);
-			if(empty($result[0]))
-			{
+			$result = sql_request("SELECT * FROM `utilisateurs` WHERE login = '" . $_POST["login"] . "'", true);
+			if (empty($result[0])) {
 				sql_request("INSERT INTO utilisateurs (`id`, `login`, `password`) 
-							 VALUES (NULL, '".htmlspecialchars($_POST["login"])."',
-							 '" . password_hash($_POST["password"], PASSWORD_DEFAULT)."');");
+							 VALUES (NULL, '" . htmlspecialchars($_POST["login"]) . "',
+							 '" . password_hash($_POST["password"], PASSWORD_DEFAULT) . "');");
 				header("location:connexion.php");
 			}
 		}

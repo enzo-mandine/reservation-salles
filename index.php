@@ -10,16 +10,14 @@
 </head>
 
 <body class="mp0">
-	<?php include("header.php"); ?>
 
 	<main>
-		<section id="anim_index" class="">
-			<div id="wrapper" class="flexr">
-				<div id="left"></div>
-				<div id="middle"></div>
-				<div id="right"></div>
-			</div>
-		</section>
+		<?php include("header.php"); ?>
+		<a href="connexion.php">
+			<article id="box" class="flexc gradient-border">
+				<p class="txt_center font15pt">Bienvenue sur le site de reservation de la salle son<br><br>Cliquez pour procéder</p>
+			</article>
+		</a>
 	</main>
 
 	<footer>

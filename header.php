@@ -21,8 +21,8 @@ if (isset($_SESSION["block"])) {
 }	?>
 <link rel="stylesheet" href="style.css">
 <header>
-	<nav class="flexr">
-		<ul class="ul_style_none flexr ">
+	<nav id="nav_header" class="flexr">
+		<ul id="nav_ul" class="ul_style_none flexr">
 			<li class="">
 				<a href="">Accueil</a>
 			</li>
