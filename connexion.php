@@ -1,6 +1,6 @@
 <?php
 	if (isset($_POST["isconnected"])) {
-		header("index.php");
+		header("index.php?error=1");
 	}
 ?>
 

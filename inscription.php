@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <?php
 
-if (isset($_POST["isconnected"])) {
-	header("index.php");
-}
+	if (isset($_POST["isconnected"])) 
+	{
+		header("index.php?error=1");
+	}
 
 ?>
 
