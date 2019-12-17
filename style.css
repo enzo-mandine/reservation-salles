@@ -3,8 +3,9 @@ body {
 }
 
 header {
-	box-shadow:4px 0px 5px 10px grey;
 	height:35px;
+	border-bottom:1px solid;
+	border-image:linear-gradient(to right, white 50%, transparent, transparent) 100% 1;
 }
 
 .mp0 {
@@ -21,12 +22,11 @@ header {
     list-style: none;
 	display:flex;
 	justify-content:space-evenly;
-	margin-left:-20px;
+	margin-top:5px;
 	width:50%;
 }
 
 .ul_style_none li {
-	margin:-10px 10px 0 0;
 	font-size:20px;
 	animation-duration:0.4s;
 	animation-fill-mode:none;

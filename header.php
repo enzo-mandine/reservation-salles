@@ -25,7 +25,7 @@
 <header>
 	<nav class="flexr">
 		<ul class="ul_style_none flexr mp0">
-			<li> <a href="">Accueil</a></li>
+			<li> <a href="index.php">Accueil</a></li>
 			<li> <a href="">Reservation</a></li>
 			<li><a href="reservation-form.php">reservation-form</a></li>
 			
