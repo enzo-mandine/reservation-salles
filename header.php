@@ -24,13 +24,10 @@ if (isset($_SESSION["block"])) {
 	<nav id="nav_header" class="flexr">
 		<ul id="nav_ul" class="ul_style_none flexr">
 			<li class="">
-				<a href="">Accueil</a>
+				<a href="index.php">Accueil</a>
 			</li>
 			<li class="">
-				<a href="">Reservation</a>
-			</li>
-			<li class="">
-				<a href="">Lien</a>
+				<a href="planning.php">Reservation</a>
 			</li>
 			<?php if (!isset($_SESSION["isconnected"])) { ?>
 				<li class="">

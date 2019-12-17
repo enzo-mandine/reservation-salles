@@ -13,16 +13,36 @@ a {
 	text-decoration: none;
 	color: none;
 }
-
+#intro {
+	background-color: rgba(255, 255, 255, 0.8);
+	width: 50vw;
+	height: fit-content;
+	padding: 10px;
+	margin: auto;
+	margin-top: 10vh;
+	border-radius: 5px;
+	box-shadow: 10px 10px 31px 0px rgba(0, 0, 0, 0.29);
+	font-size: 20pt;
+	text-align: center;
+}
 #box {
 	background-color: rgba(255, 255, 255, 0.8);
 	width: fit-content;
 	height: fit-content;
 	padding: 10px;
 	margin: auto;
-	margin-top: 35vh;
+	margin-top: 10vh;
 	border-radius: 5px;
 	box-shadow: 10px 10px 31px 0px rgba(0, 0, 0, 0.29);
+}
+
+.txt_area {
+	width: 30vw;
+	height: 30vh;
+	resize: none;
+	border-radius: 5px;
+	border-style: solid;
+	border-color: #5073b8;
 }
 
 .input {
