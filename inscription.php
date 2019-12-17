@@ -50,13 +50,17 @@
 
 <?php
 
-	if (isset($_POST["submit"])) {
-		if ($_POST["password"] == $_POST["passwordconfirm"]) {
+	if (isset($_POST["submit"])) 
+	{
+		if ($_POST["password"] == $_POST["passwordconfirm"]) 
+		{
 			$result = sql_request("SELECT * FROM `utilisateurs` WHERE login = '" . $_POST["login"] . "'", true);
-			if (empty($result[0])) {
+			if (empty($result[0]))
+			{
 				sql_request("INSERT INTO utilisateurs (`id`, `login`, `password`) 
 							 VALUES (NULL, '" . htmlspecialchars($_POST["login"]) . "',
 							 '" . password_hash($_POST["password"], PASSWORD_DEFAULT) . "');");
+							 
 				header("location:connexion.php");
 			}
 		}

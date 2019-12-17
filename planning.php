@@ -10,9 +10,9 @@
 </head>
 
 <body class="mp0">
+	<?php include("header.php"); ?>
 
     <main>
-        <?php include("header.php"); ?>
         <?php include("table.php"); ?>
     </main>
 </body>
