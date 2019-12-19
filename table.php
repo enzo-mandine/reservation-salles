@@ -16,8 +16,8 @@
                 $pos = $y . "_" . $x;
                 while ($i < count($result)) {
                     $yoyo = "<a href=\"reservation-form.php?location=" . $pos . "\"><input class='btn_add' type='button' value='+'></a>";
-                    if ($result[$i][6] == $y . "_" . $x) {
-                        $yoyo = "<div class='res_slot'><p class='txt_res_slot'><a class='a_style_res_slot' href=\"reserved.php?location=" . $pos . "\">" . $result[$i][1] . "</p></div>";
+                    if ($result[$i][5] == $pos) {
+                        $yoyo = "<div class='res_slot'><p class='txt_res_slot'>" . $result[$i][1] . "</p></div>";
                         break;
                     }
                     ++$i;
