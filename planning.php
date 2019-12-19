@@ -11,12 +11,16 @@
 
 <body class="mp0">
 
+	<?php include("header.php"); ?>
+
     <main>
-        <?php include("header.php"); ?>
-        <section id="include_table" class="flexr">
+        
+		<section id="include_table" class="flexr">
             <?php include("table.php"); ?>
         </section>
+		
     </main>
+	
     <?php include("footer.php"); ?>
 </body>
 

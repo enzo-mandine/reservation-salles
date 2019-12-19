@@ -4,7 +4,7 @@
     <?php
     $result = sql_request("SELECT * FROM reservations", true);
     $y = 0;
-    while ($y < 12) {
+    while ($y < 11) {
     ?>
         <tr>
             <?php
