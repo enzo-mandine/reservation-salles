@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php
 
-if (isset($_POST["isconnected"])) {
+if (isset($_POST["login"])) {
 	header("index.php?error=1");
 }
 

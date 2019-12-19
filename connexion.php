@@ -1,6 +1,6 @@
 <?php
 	if (isset($_SESSION["login"])) {
-		header("location:index.php");
+		header("index.php?error=1");
 	}
 
 	if (isset($_GET["error"])) {
