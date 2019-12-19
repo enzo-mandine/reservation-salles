@@ -1,6 +1,6 @@
 <?php
-
-	if(isset($_POST["isconnected"]))
+	session_start();
+	if(isset($_POST["login"]))
 	{
 		header("index.php");
 	}
@@ -55,33 +55,29 @@
 		
 		<main>
 			<div id="" class="">
-				<section id="" class="">
-					<p id="" class="">Profil de <?php echo $_SESSION["login"]; ?></p>
-					<form class="" action="" method="POST">
+				<section id="box" class="">
+					<p id="" class="">Modifier le profil de <?php echo $_SESSION["login"]; ?></p>
+					<form class="flexc" action="profil.php" method="POST">
 						
 						<label for="login">Login</label>
-						<input class="" type="text" name="login" value="<?php echo $_SESSION["login"]; ?>" required>
+						<input class="mb15 input" type="text" name="login" value="<?php echo $_SESSION["login"]; ?>" required>
 						
 						<label for="password">Password</label>
-						<input class="" type="password" name="password" required>
-						
-						<label for="passwordconfirm">Confirmez le password</label>
-						<input class="" type="password" name="passwordconfirm"  required>
+						<input class="mb15 input" type="password" name="password" required>
 						
 						<label for="Npassword">Nouveau mot de passe</label>
-						<input class="" type="password" name="Npassword" >
+						<input class="mb15 input" type="password" name="Npassword" >
+
+						<label for="passwordconfirm">Confirmez le mot de passe</label>
+						<input class="mb15 input" type="password" name="passwordconfirm"  required>
 						
-						<input id="" class="" name="submit" type="submit" value="inscription">
+						<input id="" class="button gradient-border" name="submit" type="submit" value="Modifier">
 					</form>
 				</section>
 			</div>
 		</main>
 		
-		<footer>
-			<div id="" class="">
-				<p class="">Réservations de salles - Laplateforme</p>
-			</div>
-		</footer>
+		<?php include("footer.php"); ?>
 	</body>
 
 </html>

@@ -1,7 +1,6 @@
-<link rel="stylesheet" href="teststyle.css">
+<link rel="stylesheet" href="tablestyle.css">
 <?php
 $login = mysqli_connect("localhost", "root", "", "reservationsalles");
-//$request = "SELECT * FROM utilisateurs INNER JOIN reservations ON utilisateurs.id = reservations.id_utilisateur";
 $request = "SELECT * FROM reservations";
 $query = mysqli_query($login, $request);
 $result = mysqli_fetch_all($query);
@@ -15,14 +14,12 @@ $y = 0;
             <?php
             $x = 0;
             while ($x < 6) {
-                //${'var' . $y . "_" . $x} = $y . "_" . $x;
-                //$yoyo =  $y . "_" . $x;
                 $i = 0;
                 $pos = $y . "_" . $x;
                 while ($i < count($result)) {
                     $yoyo = "<a href=\"reservation-form.php?location=" . $pos . "\"><input class='btn_add' type='button' value='+'></a>";
                     if ($result[$i][6] == $y . "_" . $x) {
-                        $yoyo = "<div class='res_slot'><p class='txt_res_slot'><a class='a_style_res_slot' href=\"reserved.php?location=" . $pos . "\">" . $result[$i][1] . "</p></div>";
+                        $yoyo = "<a class='a_style_res_slot' href=\"reserved.php?location=" . $pos . "\"><div class='res_slot'><p class='txt_res_slot'>" . $result[$i][1] . "</p></div></a>";
                         break;
                     }
                     ++$i;

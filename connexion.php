@@ -1,6 +1,7 @@
 <?php
-if (isset($_POST["isconnected"])) {
-	header("index.php");
+session_start();
+if (isset($_SESSION["login"])) {
+	header("location:index.php");
 }
 ?>
 
@@ -13,7 +14,7 @@ if (isset($_POST["isconnected"])) {
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<link rel="stylesheet" href="style.css">
 	<link href="https://fonts.googleapis.com/css?family=Caveat|Open+Sans|Roboto&display=swap" rel="stylesheet">
-	<title>Inscription</title>
+	<title>Connexion</title>
 </head>
 
 <body class="mp0">
@@ -57,11 +58,7 @@ if (isset($_POST["isconnected"])) {
 		</div>
 	</main>
 
-	<footer>
-		<div id="" class="">
-			<p class="">Réservations de salles - Laplateforme</p>
-		</div>
-	</footer>
+	<?php include("footer.php"); ?>
 </body>
 
 </html>

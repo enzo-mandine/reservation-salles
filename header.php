@@ -1,10 +1,10 @@
 <?php
-session_start();
 include("function.php");
 
 if (isset($_GET["logout"])) {
 	session_destroy();
 	header("location:index.php");
+	die;
 }
 
 if (isset($_SESSION["block"])) {

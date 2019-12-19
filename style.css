@@ -1,3 +1,7 @@
+* {
+	font-family: 'Open Sans', sans-serif;
+}
+
 body {
 	background-image: url(Images/calendar.jpg);
 	background-size: cover;
@@ -9,10 +13,28 @@ header {
 	background-color: #88c0d0c5;
 }
 
+footer {
+	display: flex;
+	justify-content: center;
+	background-color: #88c0d0c5;
+	height: 3vh;
+	position: absolute;
+	bottom: 0;
+}
+
+#foot {
+	width: 100%;
+}
+
+.txt_foot {
+	margin-top: 5px;
+	color: white;
+}
 a {
 	text-decoration: none;
 	color: none;
 }
+
 #intro {
 	background-color: rgba(255, 255, 255, 0.8);
 	width: 50vw;
@@ -25,6 +47,7 @@ a {
 	font-size: 20pt;
 	text-align: center;
 }
+
 #box {
 	background-color: rgba(255, 255, 255, 0.8);
 	width: fit-content;
@@ -61,11 +84,14 @@ a {
 	border-radius: 30px;
 	border-style: none;
 	background-color: #1098ad;
+	font-size: 12pt;
 }
 
 .button:hover {
 	background-color: #ffca4b;
-	padding: 30px;
+	padding-left: 30px;
+	padding-right: 30px;
+	font-size: 15pt;
 }
 
 .mb15 {
@@ -74,6 +100,18 @@ a {
 
 .txt_center {
 	text-align: center;
+}
+
+.center {
+	justify-self: center;
+}
+
+#png_calendar {
+	background-image: url(Images/icon_calendar.png);
+	width: 250px;
+	height: 250px;
+	background-size: cover;
+	margin-left: 12px;
 }
 
 .font15pt {
@@ -143,13 +181,17 @@ a {
 	right: 0;
 }
 
+#include_table {
+	margin: auto;
+	justify-content: center;
+}
+
 /* import */
 
 .gradient-border:hover {
-	transition: 3s;
+	transition: 0.1s;
 	--borderWidth: 3px;
 	position: relative;
-	border-radius: var(--borderWidth);
 }
 
 .gradient-border:after {

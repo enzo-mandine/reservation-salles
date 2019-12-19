@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -6,6 +9,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<link rel="stylesheet" href="style.css">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
 	<title>Accueil</title>
 </head>
 
@@ -24,12 +28,7 @@
 			</article>
 		</a>
 	</main>
-
-	<footer>
-		<div id="" class="">
-			<p class="">Réservations de salles - Laplateforme</p>
-		</div>
-	</footer>
+<?php include("footer.php"); ?>
 </body>
 
 </html>

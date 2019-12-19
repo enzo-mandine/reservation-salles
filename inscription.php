@@ -24,7 +24,7 @@ if (isset($_POST["isconnected"])) {
 	<main>
 		<div id="" class="">
 			<section id="box" class="">
-				<p id="" class="">Veuillez vous enregistrer pour reserver un créneau.</p>
+				<p id="" class="">Veuillez vous enregistrer pour reserver.</p>
 				<form class="flexc" action="inscription.php" method="POST">
 					<label for="login">Login</label>
 					<input class="mb15 input" type="text" name="login" placeholder="Login" required>
@@ -38,11 +38,7 @@ if (isset($_POST["isconnected"])) {
 		</div>
 	</main>
 
-	<footer>
-		<div id="" class="">
-			<p class="">Réservations de salles - Laplateforme</p>
-		</div>
-	</footer>
+	<?php include("footer.php"); ?>
 </body>
 
 </html>

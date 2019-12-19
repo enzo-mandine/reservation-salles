@@ -13,8 +13,11 @@
 
     <main>
         <?php include("header.php"); ?>
-        <?php include("table.php"); ?>
+        <section id="include_table" class="flexr">
+            <?php include("table.php"); ?>
+        </section>
     </main>
+    <?php include("footer.php"); ?>
 </body>
 
 </html>
