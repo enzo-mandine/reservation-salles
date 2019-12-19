@@ -1,25 +1,12 @@
 <?php
-if (isset($_SESSION["login"])) {
-	header("location:index.php");
-}
-?>
+	if (isset($_SESSION["login"])) {
+		header("location:index.php");
+	}
 
-<!DOCTYPE html>
-<html lang="fr">
-
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<link rel="stylesheet" href="style.css">
-	<link href="https://fonts.googleapis.com/css?family=Caveat|Open+Sans|Roboto&display=swap" rel="stylesheet">
-	<title>Connexion</title>
-</head>
-
-<body class="mp0">
-	<?php
 	if (isset($_GET["error"])) {
+		
 		if ($_GET["error"] == 0) {
+			
 			if (!isset($_SESSION["try"])) {
 				$_SESSION["try"] = 3;
 			}
@@ -36,8 +23,24 @@ if (isset($_SESSION["login"])) {
 				<p id="err">Mot de passe ou login incorrect <a href="connexion.php"><img src="Images/closeBtn.png" /></a><br />
 					<?php echo $_SESSION["try"]; ?> essais restant.</p>
 			</div>
-	<?php	}
-			} ?>
+<?php	}
+	} ?>
+
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="style.css">
+	<link href="https://fonts.googleapis.com/css?family=Caveat|Open+Sans|Roboto&display=swap" rel="stylesheet">
+	<title>Connexion</title>
+</head>
+
+<body class="mp0">
+	
 
 	<main>
 		<?php
@@ -65,16 +68,16 @@ if (isset($_SESSION["login"])) {
 
 
 <?php
-			if (isset($_POST["submit"])) {
-				$res = sql_request("SELECT login, password, id FROM utilisateurs WHERE login ='" . htmlspecialchars($_POST["login"]) . "'", true, true);
-				if (password_verify($_POST["password"], $res[1])) {
-					$_SESSION["login"] = $_POST["login"];
-					$_SESSION["id"] = $res[2];
-					$_SESSION["isconnected"] = true;
+	if (isset($_POST["submit"])) {
+		$res = sql_request("SELECT login, password, id FROM utilisateurs WHERE login ='" . htmlspecialchars($_POST["login"]) . "'", true, true);
+		if (password_verify($_POST["password"], $res[1])) {
+			$_SESSION["login"] = $_POST["login"];
+			$_SESSION["id"] = $res[2];
+			$_SESSION["isconnected"] = true;
 
-					header("location:index.php");
-				} else {
-					header("location:connexion.php?error=0");
-				}
-			}
+			header("location:index.php");
+		} else {
+			header("location:connexion.php?error=0");
+		}
+	}
 ?>
