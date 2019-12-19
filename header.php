@@ -1,33 +1,38 @@
 <?php
-include("function.php");
+	include("function.php");
 
-session_start();
+	session_start();
 
-if (isset($_GET["logout"])) {
-	session_destroy();
-	header("location:index.php");
-	die;
-}
-
-if (isset($_SESSION["block"])) {
-	if (time() - $_SESSION["block"] > 60) {
-		unset($_SESSION["block"]);
+	if (isset($_GET["logout"])) {
+		session_destroy();
 		header("location:index.php");
-	}	?>
+		die;
+	}
 
-	<div id="greyScreen">
-		<p id="err">Vous etes bloqué pour 60 secondes (<?php echo time() - $_SESSION["block"]; ?>)</p>
-	</div>
+	if (isset($_SESSION["block"])) 
+	{
+		if (time() - $_SESSION["block"] > 60) 
+		{
+			unset($_SESSION["block"]);
+			header("location:index.php");
+		}	?>
 
-	<?php
-													}
-													if (isset($_GET["error"])) {
-														if ($_GET["error"] == 1) { ?>
 		<div id="greyScreen">
-			<p id="err">Vous etes déja connecté.</p>
+			<p id="err">Vous etes bloqué pour 60 secondes (<?php echo time() - $_SESSION["block"]; ?>)</p>
 		</div>
+
+<?php
+	}
+	
+	if (isset($_GET["error"])) 
+	{
+		if ($_GET["error"] == 1) 
+		{ ?>
+			<div id="greyScreen">
+				<p id="err">Vous etes déja connecté.</p>
+			</div>
 <?php	}
-													}
+	}
 
 ?>
 
@@ -41,21 +46,24 @@ if (isset($_SESSION["block"])) {
 				<a href="planning.php">Reservation</a>
 			</li>
 			<?php
-													if (isset($_SESSION["isconnected"])) { ?>
-				<li>
-					<a class='' href='index.php?logout=true'>Deconnexion</a>
-				</li>
-				<li>
-					<a class='' href='profil.php'>Mon compte</a>
-				</li>
-			<?php 	} else { ?>
-				<li class="">
-					<a class='' href='inscription.php'>Inscription</a>
-				</li>
-				<li>
-					<a class='' href='connexion.php'>Connexion</a>
-				</li>
-			<?php			} ?>
+				if (isset($_SESSION["isconnected"])) 
+				{ ?>
+					<li>
+						<a class='' href='index.php?logout=true'>Deconnexion</a>
+					</li>
+					<li>
+						<a class='' href='profil.php'>Mon compte</a>
+					</li>
+		<?php 	} 
+				else 
+				{ ?>
+					<li class="">
+						<a class='' href='inscription.php'>Inscription</a>
+					</li>
+					<li>
+						<a class='' href='connexion.php'>Connexion</a>
+					</li>
+<?php			} ?>
 		</ul>
 	</nav>
 </header>
