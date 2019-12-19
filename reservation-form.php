@@ -27,20 +27,20 @@
     <main>
         <?php include("header.php"); ?>
         <div id="box">
-            <form action="reservation-form.php" method="POST">
+            <form action="" method="POST">
                 <div class="flexr">
                     <div>
                         <label for="titre">Titre de l'évenement</label>
                         <br>
-							<input class="input mb15" type="text" name="titre" placeholder="Mon évènement" required>
+							<input class="input mb15" type="text" name="titre" placeholder="Mon évènement"  value="Mon évènement" required>
                         <br>
 							<label for="start">Début</label>
                         <br>
-							<input class="input mb15" type="datetime-local" name="start">
+							<input class="input mb15" type="datetime-local" value="20/12/2019 17:15"name="start">
                         <br>
 							<label for="end">Fin</label>
                         <br>
-							<input class="input mb15" type="datetime-local" name="end">
+							<input class="input mb15" type="datetime-local" value="20/12/2019 18:15" name="end">
                     </div>
                     <div id="png_calendar"></div>
                 </div>
@@ -63,7 +63,31 @@
 
 <?php
 
-
+	if(isset($_POST["submit"])) {
+		$verify = true;
+		$count = 0;
+		foreach($_POST as $input=>$value) {
+			if(empty($value)) {
+				header("reservation-form.php?error=3");
+				$verify = false;
+				break;
+			}
+			$count++;
+		}
+		
+		if($verify) {
+			
+			if(!empty(sql_request("SELECT * FROM reservations WHERE date = '".date("Y/m/d H:i", strtotime($_POST["start"]))."'", true, true))."'") {
+				header("location:reservation-form?error=4");
+			}
+			else
+			{
+				sql_request("INSERT INTO `reservations` (`id`, `titre`, `description`, `debut`, `fin`, `pos`, `id_createur`)
+							VALUES (NULL,'".$_POST["titre"]."' , '".$_POST["description"]."' , '".date("Y/m/d H:i", strtotime($_POST["start"]))."'
+							, '".date("Y/m/d H:i", strtotime($_POST["end"]))."' , '".$_GET["location"]."' , '".$_SESSION["id"]."')");
+			}
+		}	
+	}
 
 
 
