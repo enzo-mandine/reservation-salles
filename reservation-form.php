@@ -3,7 +3,8 @@ if (isset($_GET["location"])) {
     $location = $_GET["location"];
 }
 //$sel_date= date("Y") . "-" . date("m") . "-" . date("d");
-$sel_date = date("Y-m-d");
+// $sel_date = date("d-m-Y H:i");
+
 ?>
 
 <!DOCTYPE html>
@@ -27,15 +28,15 @@ $sel_date = date("Y-m-d");
                     <div>
                         <label for="titre">Titre de l'évenement</label>
                         <br>
-                        <input class="input mb15" type="text" name="titre" placeholder="Mon évènement" required>
+							<input class="input mb15" type="text" name="titre" placeholder="Mon évènement" required>
                         <br>
-                        <label for="start">Début</label>
+							<label for="start">Début</label>
                         <br>
-                        <input class="input mb15" type="datetime-local" name="start" value=<?php echo "$sel_date"; ?>>
+							<input class="input mb15" type="datetime-local" name="start">
                         <br>
-                        <label for="end">Fin</label>
+							<label for="end">Fin</label>
                         <br>
-                        <input class="input mb15" type="datetime-local" name="end">
+							<input class="input mb15" type="datetime-local" name="end">
                     </div>
                     <div id="png_calendar"></div>
                 </div>
