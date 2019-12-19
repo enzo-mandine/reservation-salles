@@ -2,7 +2,7 @@
 <?php
 
 if (isset($_POST["isconnected"])) {
-	header("index.php");
+	header("index.php?error=1");
 }
 
 ?>
@@ -52,6 +52,7 @@ if (isset($_POST["isconnected"])) {
 				sql_request("INSERT INTO utilisateurs (`id`, `login`, `password`) 
 							 VALUES (NULL, '" . htmlspecialchars($_POST["login"]) . "',
 							 '" . password_hash($_POST["password"], PASSWORD_DEFAULT) . "');");
+
 				header("location:connexion.php");
 			}
 		}

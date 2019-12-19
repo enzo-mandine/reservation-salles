@@ -1,11 +1,9 @@
 <?php
-session_start();
 if (isset($_GET["location"])) {
     $location = $_GET["location"];
 }
 //$sel_date= date("Y") . "-" . date("m") . "-" . date("d");
 $sel_date = date("Y-m-d");
-echo $sel_date."<br>";
 ?>
 
 <!DOCTYPE html>

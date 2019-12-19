@@ -1,6 +1,8 @@
 <?php
 include("function.php");
 
+session_start();
+
 if (isset($_GET["logout"])) {
 	session_destroy();
 	header("location:index.php");
@@ -14,12 +16,21 @@ if (isset($_SESSION["block"])) {
 	}	?>
 
 	<div id="greyScreen">
-		<p id="err">Vous etes bloqué pour 60 secondes</p>
+		<p id="err">Vous etes bloqué pour 60 secondes (<?php echo time() - $_SESSION["block"]; ?>)</p>
 	</div>
 
-<?php
-}	?>
-<link rel="stylesheet" href="style.css">
+	<?php
+													}
+													if (isset($_GET["error"])) {
+														if ($_GET["error"] == 1) { ?>
+		<div id="greyScreen">
+			<p id="err">Vous etes déja connecté.</p>
+		</div>
+<?php	}
+													}
+
+?>
+
 <header>
 	<nav id="nav_header" class="flexr">
 		<ul id="nav_ul" class="ul_style_none flexr">
@@ -29,19 +40,20 @@ if (isset($_SESSION["block"])) {
 			<li class="">
 				<a href="planning.php">Reservation</a>
 			</li>
-			<?php if (!isset($_SESSION["isconnected"])) { ?>
-				<li class="">
-					<a class='' href='inscription.php'>Inscription</a>
-				</li>
-				<li>
-					<a class='' href='connexion.php'>Connexion</a>
-				</li>
-			<?php			} else { ?>
+			<?php
+													if (isset($_SESSION["isconnected"])) { ?>
 				<li>
 					<a class='' href='index.php?logout=true'>Deconnexion</a>
 				</li>
 				<li>
 					<a class='' href='profil.php'>Mon compte</a>
+				</li>
+			<?php 	} else { ?>
+				<li class="">
+					<a class='' href='inscription.php'>Inscription</a>
+				</li>
+				<li>
+					<a class='' href='connexion.php'>Connexion</a>
 				</li>
 			<?php			} ?>
 		</ul>

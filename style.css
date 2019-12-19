@@ -30,6 +30,7 @@ footer {
 	margin-top: 5px;
 	color: white;
 }
+
 a {
 	text-decoration: none;
 	color: none;
@@ -186,6 +187,10 @@ a {
 	justify-content: center;
 }
 
+.a_style {
+    text-decoration: none;
+    color: #ffca4b;
+}
 /* import */
 
 .gradient-border:hover {

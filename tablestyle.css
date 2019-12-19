@@ -31,9 +31,8 @@ table {
     background-color: #ffab4b;
 }
 
-input[type='button']
-{
-    font-size:24px;
+input[type='button'] {
+    font-size: 24px;
 }
 
 .table_res {
