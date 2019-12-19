@@ -32,15 +32,15 @@
                     <div>
                         <label for="titre">Titre de l'évenement</label>
                         <br>
-							<input class="input mb15" type="text" name="titre" placeholder="Mon évènement"  value="Mon évènement" required>
+							<input class="input mb15" type="text" name="titre" placeholder="Mon évènement" required>
                         <br>
 							<label for="start">Début</label>
                         <br>
-							<input class="input mb15" type="datetime-local" value="20/12/2019 17:15"name="start">
+							<input class="input mb15" type="datetime-local" name="start">
                         <br>
 							<label for="end">Fin</label>
                         <br>
-							<input class="input mb15" type="datetime-local" value="20/12/2019 18:15" name="end">
+							<input class="input mb15" type="datetime-local"  name="end">
                     </div>
                     <div id="png_calendar"></div>
                 </div>
