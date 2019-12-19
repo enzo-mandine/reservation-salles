@@ -1,9 +1,13 @@
 <?php
-if (isset($_GET["location"])) {
-    $location = $_GET["location"];
-}
-//$sel_date= date("Y") . "-" . date("m") . "-" . date("d");
-// $sel_date = date("d-m-Y H:i");
+	if (!isset($_SESSION["login"])) {
+		header("index.php?error=2");
+	}
+
+	if (isset($_GET["location"])) {
+		$location = $_GET["location"];
+	}
+	//$sel_date= date("Y") . "-" . date("m") . "-" . date("d");
+	// $sel_date = date("d-m-Y H:i");
 
 ?>
 
@@ -41,11 +45,11 @@ if (isset($_GET["location"])) {
                     <div id="png_calendar"></div>
                 </div>
                 <br>
-                <label for="description">Description de mon évènement</label>
+					<label for="description">Description de mon évènement</label>
                 <br>
-                <textarea class="txt_area mb15" name="description" placeholder="Décrivez votre évènement ici" required></textarea>
+					<textarea class="txt_area mb15" name="description" placeholder="Décrivez votre évènement ici" required></textarea>
                 <br>
-                <input class="button gradient-border flexr center" name="submit" type="submit" value="connexion">
+					<input class="button gradient-border flexr center" name="submit" type="submit" value="connexion">
 
             </form>
         </div>
@@ -55,3 +59,14 @@ if (isset($_GET["location"])) {
 </body>
 
 </html>
+
+
+<?php
+
+
+
+
+
+
+
+?>
