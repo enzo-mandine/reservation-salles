@@ -6,6 +6,15 @@
 	if (isset($_GET["location"])) {
 		$location = $_GET["location"];
 	}
+
+	if (isset($_POST["submit"])) {
+		$i=0;
+		while (count($result)) {
+			if ($result[$i][7] == $_GET["location"]) {
+				header("location:planning.php");
+			}
+		}
+	}
 	//$sel_date= date("Y") . "-" . date("m") . "-" . date("d");
 	// $sel_date = date("d-m-Y H:i");
 
