@@ -10,13 +10,11 @@
             <?php
             $x = 0;
             while ($x < 6) {
-                //${'var' . $y . "_" . $x} = $y . "_" . $x;
-                //$yoyo =  $y . "_" . $x;
                 $i = 0;
                 $pos = $y . "_" . $x;
                 while ($i < count($result)) {
                     $yoyo = "<a href=\"reservation-form.php?location=" . $pos . "\"><input class='btn_add' type='button' value='+'></a>";
-                    if ($result[$i][5] == $pos) {
+                    if ($result[$i][6] == $pos) {
                         $yoyo = "<div class='res_slot'><p class='txt_res_slot'>" . $result[$i][1] . "</p></div>";
                         break;
                     }
