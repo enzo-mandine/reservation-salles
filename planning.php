@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+	<!DOCTYPE html>
 <html lang="fr">
 	<head>
 		<meta charset="UTF-8">
@@ -9,6 +9,7 @@
 	</head>
 
 	<body class="mp0">		
+	<?php include("header.php");?>
 		<main>
 			<?php include("plann.php"); ?>
 		</main>

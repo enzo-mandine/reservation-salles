@@ -1,7 +1,3 @@
-<?php 	
-	include("header.php");
-?>
-
 <table>
 
 <?php
@@ -13,7 +9,7 @@
 	$days = array("Lundi","Mardi","Mercredi","Jeudi","Vendredi");
 	
 	$request_reservations = "SELECT titre, utilisateurs.login, date_format(debut,'%w %k %d'), date_format(fin,'%w %k %d') 
-							FROM reservations INNER JOIN utilisateurs ON reservations.id_utilisateur = utilisateurs.id
+							FROM reservations INNER JOIN utilisateurs ON reservations.id_createur = utilisateurs.id
 							WHERE date_format(debut, '%d') >= '".$thisWeek."'";
 	$reservations = sql_request($request_reservations, true);
 	
