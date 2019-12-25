@@ -72,7 +72,6 @@
 			
 			
 			$isFree = sql_request("SELECT ID FROM reservations WHERE debut = '".$dateDebut.":00'",true,true);
-			var_dump(empty($isFree));
 			
 			if(empty($isFree))
 			{
