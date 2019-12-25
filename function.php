@@ -29,4 +29,12 @@
 		}
 		return true;
 	}
+	
+	function error($str)
+	{ ?>
+		<div class="err">
+			<p><?php echo $str; ?></p>
+		</div>
+<?php 
+	}  
 ?>

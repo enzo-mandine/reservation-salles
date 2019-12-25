@@ -20,7 +20,27 @@
 		</div>
 		
 <?php
-	}	?>
+	}	
+	if(isset($_GET["error"])){
+		if($_GET["error"] == 0) {
+			error("Vous n'etes pas connecté");
+		}
+		if($_GET["error"] == 1) {
+			error("Vous etes déja connecté");
+		}
+		if($_GET["error"] == 2) {
+			error("Mauvais mot de passe ou login");
+		}
+		if($_GET["error"] == 3) {
+			error("Un évenement est déja enregistré a cette heure");
+		}
+		if($_GET["error"] == 4) {
+			error("Tous les champs doivent etres remplis");
+		}
+	}
+	
+	
+	?>
 
 <header>
 	<nav class="flexr">

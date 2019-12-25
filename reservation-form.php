@@ -28,8 +28,6 @@
 			<div id="" class="">
 				<section id="" class="">
 					<form class="" action=""  method="POST">
-						<label for="name">Votre nom</label>
-						<input type="text" name="name" value = <?php echo $_SESSION["login"]; ?> />
 						
 						<label for="titre">Titre</label>
 						<input type="text" name="titre" />
@@ -40,10 +38,6 @@
 						<label for="dateDebut">Début</label>
 						<input name="dateDebut" type="date"/>
 						<input name="hourDebut" type="time" min="08:00" max="18:00"/>
-						
-						<label for="dateFin">Fin</label>
-						<input name="dateFin" type="date"/>
-						<input name="hourFin" type="time" min="09:00" max="19:00"/>
 						
 						<input type="submit" value="Enregistrer" name="submitBtn"/>
 					</form>
@@ -64,7 +58,7 @@
 
 	if(!isset($_SESSION["isconnected"]))
 	{
-		header("index.php");
+		header("location:index.php");
 	}
 
 	if(isset($_POST["submitBtn"]))
@@ -73,23 +67,28 @@
 		{
 			$titre 		 =	$_POST["titre"];
 			$description = 	$_POST["desc"];
-			$dateDebut 	 = 	$_POST["dateDebut"];
-			$dateFin 	 =	$_POST["dateFin"];
-			$hourDebut   = 	$_POST["hourDebut"];
-			$hourFin 	 =	$_POST["hourFin"];
+			$dateDebut 	 = 	$_POST["dateDebut"]." ".$_POST["hourDebut"];
+			$dateFin 	 =	$_POST["dateDebut"]." ".date("H", strtotime(strval(intval($_POST["hourDebut"])+1).":00"));
 			
-			$isFree = sql_request("SELECT ID FROM reservations WHERE debut = '".$dateDebut." ".$hourDebut."'",true,true);
+			
+			$isFree = sql_request("SELECT ID FROM reservations WHERE debut = '".$dateDebut.":00'",true,true);
+			var_dump(empty($isFree));
+			
 			if(empty($isFree))
 			{
-				sql_request("INSERT INTO `reservations` (`id`, `titre`, `description`, `debut`, `fin`, `id_utilisateur`)
-							VALUES (NULL,'".$titre."', '".$description."', '".$dateDebut." ".$hourDebut."' ,
-							'".$dateFin." ".$hourFin."' , '".$_SESSION["id"]."')");							
+				sql_request("INSERT INTO `reservations` (`id`, `titre`, `description`, `debut`, `fin`, `id_createur`)
+							VALUES (NULL,'".$titre."', '".$description."', '".$dateDebut.":00',
+							'".$dateFin.":00' , '".$_SESSION["id"]."')");							
 			}
 			else
 			{
-				header("location:reservation-form.php?error=5");
+				header("location:reservation-form.php?error=3");
 			}
 			
+		}
+		else
+		{
+			header("location:reservation-form.php?error=4");
 		}
 	}
 ?>
