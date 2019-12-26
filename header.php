@@ -7,8 +7,7 @@
 		header("location:index.php");
 	}
 	
-	if(isset($_SESSION["block"]))
-	{
+	if(isset($_SESSION["block"])) {
 		if(time() - $_SESSION["block"] > 60)
 		{
 			unset($_SESSION["block"]);
@@ -55,8 +54,6 @@
 	<nav class="flexr">
 		<ul class="ul_style_none flexr mp0">
 			<li> <a href="index.php">Accueil</a></li>
-			<li> <a href="">Reservation</a></li>
-			<li><a href="reservation-form.php">reservation-form</a></li>
 			
 <?php		if (!isset($_SESSION["isconnected"])) { ?>
 				<li class="">
@@ -70,6 +67,10 @@
 	<?php			} else { ?>
 				<li>
 					<a class='' href='index.php?logout=true'>Deconnexion</a>
+				</li>
+				
+				<li>
+					<a href="reservation-form.php">reservation-form</a>
 				</li>
 				
 				<li>
