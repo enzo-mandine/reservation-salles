@@ -232,3 +232,43 @@ a {
 		background-position: 0% 50%;
 	}
 }
+
+
+
+
+/*------------------TABLE-----------------*/
+
+table
+{
+	width:fit-content;
+	margin:auto;
+}
+
+table tr td
+{
+	width:100px;
+	height:30px;
+	margin:auto;text-align:center;
+}
+
+table td input
+{
+	background-color:orange;
+	border:1px solid yellow;
+	color:white;
+	cursor:pointer;
+	
+	transition:all 0.4s ease;
+}
+
+table td input:hover
+{
+	background-color:yellow;
+	color:orange;
+	border-color:orange;
+}
+
+.red
+{
+	background-image:linear-gradient(45deg,);
+}

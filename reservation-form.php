@@ -68,7 +68,7 @@
 
 	if(!isset($_SESSION["isconnected"]))
 	{
-		header("location:index.php");
+		header("location:connexion.php");
 	}
 
 	if(isset($_POST["submitBtn"]))

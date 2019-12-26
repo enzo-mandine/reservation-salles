@@ -59,30 +59,49 @@
 			}
 			else 
 			{
-				if ( getdate()["mday"] > $thisWeek+($day-1))
-				{
+				if ( getdate()["mday"] > $thisWeek+($day-1)) {
 					echo "<td class='red'></td>";
 				}	
-				else
-				{
+				else {
 					echo "<td>";
-					$is_reserved = false;
-					foreach($reservations as $reservation)
-					{
-						$reservation_day = explode(" ",$reservation[2])[0];
-						$reservation_hour = explode(" ",$reservation[2])[1];
-						
-						if($reservation_day == $day && $reservation_hour == $hour)
-						{?>
-							<a href='reservation.php?id=<?php echo $reservation[4]; ?>'><?php echo $reservation[0]; ?></a>
-					<?php	$is_reserved = true;
-						}						
+					
+					if(getdate()["mday"] == $thisWeek+($day-1))	{
+						if(getdate()["hours"] < $hour) {
+							$is_reserved = false;
+							foreach($reservations as $reservation)	{
+								$reservation_day = explode(" ",$reservation[2])[0];
+								$reservation_hour = explode(" ",$reservation[2])[1];
+								
+								if($reservation_day == $day && $reservation_hour == $hour)	{?>
+									<a href='reservation.php?id=<?php echo $reservation[4]; ?>'><?php echo $reservation[0]; ?></a>
+							<?php	$is_reserved = true;
+								}						
+							}
+							
+							if(!$is_reserved) {
+								echo "<a href='reservation-form.php'><input class='btn_add' type='button' value='+'></a>";
+							}
+						}
 					}
 					
-					if(!$is_reserved)
-					{
-						echo "<a href='reservation-form.php'><input class='btn_add' type='button' value='+'></a>";
+					
+					else {
+						$is_reserved = false;
+						foreach($reservations as $reservation)	{
+							$reservation_day = explode(" ",$reservation[2])[0];
+							$reservation_hour = explode(" ",$reservation[2])[1];
+							
+							if($reservation_day == $day && $reservation_hour == $hour)	{?>
+								<a href='reservation.php?id=<?php echo $reservation[4]; ?>'><?php echo $reservation[0]; ?></a>
+						<?php	$is_reserved = true;
+							}						
+						}
+						
+						if(!$is_reserved)	{
+							echo "<a href='reservation-form.php'><input class='btn_add' type='button' value='+'></a>";
+						}
 					}
+					
 					echo "</td>";									
 				}	
 			}

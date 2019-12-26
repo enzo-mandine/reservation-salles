@@ -20,9 +20,9 @@
 	<body class="mp0">
 		<?php 
 			include("header.php"); 
-			if(isset($_GET["error"]))
+			if(isset($_GET["errorCo"]))
 			{
-				if($_GET["error"] == 0)
+				if($_GET["errorCo"] == 0)
 				{ 
 					if(!isset($_SESSION["try"]))
 					{
@@ -87,7 +87,7 @@
 		}
 		else
 		{
-			header("location:connexion.php?error=0");
+			header("location:connexion.php?errorCo=0");
 		}
 		
 	}
