@@ -5,6 +5,11 @@
 		header("index.php");
 	}
 	
+	if(isset($_GET["profil"]))
+	{
+		error("Changement effectués");
+	}
+	
 ?>
 
 <!DOCTYPE html>
@@ -21,41 +26,19 @@
 
 	<body class="mp0">
 		<?php 
-			include("header.php");
-			if(isset($_GET["error"]))
-			{
-				if($_GET["error"] == 0)
-				{ ?>
-				
-					<div id="greyScreen">
-						<p id="err">Login déja pris <a href="profil.php"><img src="Images/closeBtn.png"/></a></p>
-					</div>
-				
-<?php			}
-				else if($_GET["error"] == 1)
-				{?>
-					
-					<div id="greyScreen">
-						<p id="err">Le mot de passe n'est pas valide<a href="profil.php"><img src="Images/closeBtn.png"/></a></p>
-					</div>
-					
-<?php			}
-				else if($_GET["error"] == 2)
-				{ ?>
-					
-					<div id="greyScreen">
-						<p id="err">Les mot de passes ne correspondent pas <a href="profil.php"><img src="Images/closeBtn.png"/></a></p>
-					</div>
-					
-<?php			}
-			}     ?>
+			include("header.php");     ?>
 			
 		
 		<main>
 			<div id="" class="">
 				<section id="" class="">
 					<p id="" class="">Profil de <?php echo $_SESSION["login"]; ?></p>
-					<form class="" action="" method="POST">
+					<form class="" action="" method="POST" enctype="multipart/form-data">
+						
+						<div class="inputZone">
+							<label for="profilePic">Photo profil</label>
+							<input type="file" name="profilPic" value="<?php echo $profilImg[0]; ?>"/>
+						</div>
 						
 						<label for="login">Login</label>
 						<input class="" type="text" name="login" value="<?php echo $_SESSION["login"]; ?>" required>
@@ -90,6 +73,22 @@
 	{
 		if($_POST["password"] == $_POST["passwordconfirm"])
 		{
+			if(strlen($_FILES["profilPic"]["name"]) != 0)
+			{
+				$imgPath = "ProfilPics/".basename($_FILES["profilPic"]["name"]);
+				$imgType = strtolower(pathinfo($imgPath,PATHINFO_EXTENSION));
+				$newName = "ProfilPics/".$_SESSION["id"].".".$imgType;
+				
+				if(file_exists($newName))
+				{
+					unlink($newName);
+				}
+				
+				move_uploaded_file($_FILES["profilPic"]["tmp_name"], $imgPath);
+				rename($imgPath,$newName);
+				
+				sql_request("UPDATE utilisateurs SET image ='".$newName."' WHERE id =".$_SESSION["id"]);
+			}
 			$res = sql_request("SELECT login, password FROM utilisateurs WHERE id = '".$_SESSION["id"]."'",true,true);
 			
 			if(password_verify($_POST["password"], $res[1]))
@@ -105,7 +104,7 @@
 					}
 					else
 					{
-						header("location:profil.php?error=0");
+						header("location:profil.php?error=5");
 					}
 				}
 
@@ -119,12 +118,12 @@
 			}
 			else
 			{
-				header("location:profil.php?error=1");
+				header("location:profil.php?error=2");
 			}
 		}
 		else
 		{
-			header("location:profil.php?error=2");
+			header("location:profil.php?error=7");
 		}
 	}
 ?>

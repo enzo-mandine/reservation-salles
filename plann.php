@@ -15,11 +15,13 @@
 	$max_month_date = intval( date("t", strtotime($year."W".floor(($day_of_year/7)+1))));
 	$cur_month = 1+intval( date("m", strtotime($year."W".floor(($day_of_year/7)+1))));
 	$thisWeek = intval( date("j", strtotime($year."W".floor(($day_of_year/7)+1))));
+	
 	$days = array("Lundi","Mardi","Mercredi","Jeudi","Vendredi");
 	
 	$request_reservations = "SELECT titre, utilisateurs.login, date_format(debut,'%w %k %d'), date_format(fin,'%w %k %d') 
-							FROM reservations INNER JOIN utilisateurs ON reservations.id_createur = utilisateurs.id
+							FROM reservations INNER JOIN utilisateurs ON reservations.id_utilisateur = utilisateurs.id
 							WHERE date_format(debut, '%d %c %Y') >= '".$thisWeek." ".$cur_month." ".$year."'";
+	
 	$reservations = sql_request($request_reservations, true);
 	
 	$hour = 7;					

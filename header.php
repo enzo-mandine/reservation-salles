@@ -37,6 +37,15 @@
 		if($_GET["error"] == 4) {
 			error("Tous les champs doivent etres remplis");
 		}
+		if($_GET["error"] == 5) {
+			error("Login déja pris");
+		}
+		if($_GET["error"] == 6) {
+			error("Mot de apsse deja pris");
+		}
+		if($_GET["error"] == 7) {
+			error("Les mots de passes ne correspondent pas");
+		}
 	}
 	
 	
