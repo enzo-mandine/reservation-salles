@@ -4,12 +4,6 @@
 	{
 		header("index.php");
 	}
-	
-	if(isset($_GET["profil"]))
-	{
-		error("Changement effectués");
-	}
-	
 ?>
 
 <!DOCTYPE html>
@@ -26,7 +20,11 @@
 
 	<body class="mp0">
 		<?php 
-			include("header.php");     ?>
+			include("header.php");     
+			if(isset($_GET["profil"])) {
+				error("Changement effectués");
+			}
+	?>
 			
 		
 		<main>
@@ -37,7 +35,7 @@
 						
 						<div class="inputZone">
 							<label for="profilePic">Photo profil</label>
-							<input type="file" name="profilPic" value="<?php echo $profilImg[0]; ?>"/>
+							<input type="file" name="profilPic" value=""/>
 						</div>
 						
 						<label for="login">Login</label>
