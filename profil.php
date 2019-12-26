@@ -30,27 +30,35 @@
 		<main>
 			<div id="" class="">
 				<section id="" class="">
-					<p id="" class="">Profil de <?php echo $_SESSION["login"]; ?></p>
-					<form class="" action="" method="POST" enctype="multipart/form-data">
+					<p id="box" class="">Profil de <?php echo $_SESSION["login"]; ?></p>
+					<form class="flexc" id="box"action="" method="POST" enctype="multipart/form-data">
 						
-						<div class="inputZone">
+						<div class="input_zone flexr">
 							<label for="profilePic">Photo profil</label>
-							<input type="file" name="profilPic" value=""/>
+							<input class="input" type="file" name="profilPic" value=""/>
 						</div>
 						
-						<label for="login">Login</label>
-						<input class="" type="text" name="login" value="<?php echo $_SESSION["login"]; ?>" required>
+						<div class="input_zone flexr">
+							<label for="login">Login</label>
+							<input class="input" type="text" name="login" value="<?php echo $_SESSION["login"]; ?>" required>
+						</div>
 						
-						<label for="password">Password</label>
-						<input class="" type="password" name="password" required>
+						<div class="input_zone flexr">
+							<label for="password">Password</label>
+							<input class="input" type="password" name="password" required>
+						</div>
 						
-						<label for="passwordconfirm">Confirmez le password</label>
-						<input class="" type="password" name="passwordconfirm"  required>
+						<div class="input_zone flexr">
+							<label for="passwordconfirm">Confirmez le password</label>
+							<input class="input" type="password" name="passwordconfirm"  required>
+						</div>
 						
-						<label for="Npassword">Nouveau mot de passe</label>
-						<input class="" type="password" name="Npassword" >
+						<div class="input_zone flexr">
+							<label for="Npassword">Nouveau mot de passe</label>
+							<input class="input" type="password" name="Npassword" >
+						</div>
 						
-						<input id="" class="" name="submit" type="submit" value="inscription">
+						<input id="" class="button" name="submit" type="submit" value="inscription">
 					</form>
 				</section>
 			</div>
