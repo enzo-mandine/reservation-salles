@@ -4,23 +4,19 @@
 
 	$year = getdate()["year"];
 	$day_of_year = getdate()["yday"];
+	$curTime = strtotime("last monday");
 	
-	
-	// 31 30 31 30 31 30 31 31 30 31 30 31
-	if(isset($_GET["page"]))
-	{
-		$day_of_year += 7*$_GET["page"];
+	if(isset($_GET["page"])) {
+		$curTime =  strtotime("+".$_GET["page"]." week", $curTime);
 	}
 	
-	$max_month_date = intval( date("t", strtotime($year."W".floor(($day_of_year/7)+1))));
-	$cur_month = 1+intval( date("m", strtotime($year."W".floor(($day_of_year/7)+1))));
-	$thisWeek = intval( date("j", strtotime($year."W".floor(($day_of_year/7)+1))));
+	// var_dump($day_of_year, date("d m Y",$curTime));
 	
 	$days = array("Lundi","Mardi","Mercredi","Jeudi","Vendredi");
 	
-	$request_reservations = "SELECT titre, utilisateurs.login, date_format(debut,'%w %k %d'), date_format(fin,'%w %k %d'), reservations.id 
+	$request_reservations = "SELECT titre, utilisateurs.login, date_format(debut,'%w %k %d'), reservations.id 
 							FROM reservations INNER JOIN utilisateurs ON reservations.id_utilisateur = utilisateurs.id
-							WHERE date_format(debut, '%d %c %Y') >= '".$thisWeek." ".$cur_month." ".$year."'";
+							WHERE date_format(debut, '%d %c %Y') >= '".date("d m Y",$curTime)."'";
 	
 	$reservations = sql_request($request_reservations, true);
 	
@@ -42,12 +38,7 @@
 		{
 			if($hour == 7 && $day > 0)
 			{
-				$date = $thisWeek + ($day-1);
-				if ($date > $max_month_date)
-				{
-					$date -= $max_month_date;
-				}
-				echo "<th>".$days[$day-1]."-".$date."</th>";
+				echo "<th>".date("l d", strtotime("monday +".($day-1)." day", $curTime))."</th>";
 			}
 			else if($day == 0 && $hour > 7)
 			{
@@ -59,40 +50,19 @@
 			}
 			else 
 			{
-				if ( getdate()["mday"] > $thisWeek+($day-1)) {
+				if ( getdate()[0] > date("U", strtotime("+".($day-1)." day",$curTime))) {
 					echo "<td class='red'></td>";
 				}	
 				else {
 					echo "<td>";
-					
-					if(getdate()["mday"] == $thisWeek+($day-1))	{
-						if(getdate()["hours"] < $hour) {
-							$is_reserved = false;
-							foreach($reservations as $reservation)	{
-								$reservation_day = explode(" ",$reservation[2])[0];
-								$reservation_hour = explode(" ",$reservation[2])[1];
-								
-								if($reservation_day == $day && $reservation_hour == $hour)	{?>
-									<a href='reservation.php?id=<?php echo $reservation[4]; ?>'><?php echo $reservation[0]; ?></a>
-							<?php	$is_reserved = true;
-								}						
-							}
-							
-							if(!$is_reserved) {
-								echo "<a href='reservation-form.php'><input class='btn_add' type='button' value='+'></a>";
-							}
-						}
-					}
-					
-					
-					else {
 						$is_reserved = false;
 						foreach($reservations as $reservation)	{
 							$reservation_day = explode(" ",$reservation[2])[0];
 							$reservation_hour = explode(" ",$reservation[2])[1];
+							$reservation_date = explode(" ",$reservation[2])[2];
 							
-							if($reservation_day == $day && $reservation_hour == $hour)	{?>
-								<a href='reservation.php?id=<?php echo $reservation[4]; ?>'><?php echo $reservation[0]; ?></a>
+							if($reservation_day == $day && $reservation_hour == $hour && $reservation_date == date("d", strtotime("+".($day-1)." day",$curTime)))	{?>
+								<a href='reservation.php?id=<?php echo $reservation[3]; ?>'><?php echo $reservation[0]; ?></a>
 						<?php	$is_reserved = true;
 							}						
 						}
@@ -100,7 +70,6 @@
 						if(!$is_reserved)	{
 							echo "<a href='reservation-form.php'><input class='btn_add' type='button' value='+'></a>";
 						}
-					}
 					
 					echo "</td>";									
 				}	
@@ -118,24 +87,29 @@
 		}
 		$hour++;
 	}
-	
-	
+?>
+	</table>
+
+<?php
 	if(!isset($_GET["page"]))
 	{?>
-		<a href="planning.php?page=1">Semaine suivante</a>
+		<a id="nextWeek" href="planning.php?page=1">Semaine suivante</a>
 <?php
 	}
 	else
-	{  if($_GET["page"] >= 1) {?>
-		<a href="planning.php?page=<?php echo $_GET["page"]+1; ?>">Semaine suivante</a><br/>
-		<a href="planning.php?page=<?php echo $_GET["page"]-1; ?>">Semaine precedente</a>
+	{  if($_GET["page"] > 1) {?>
+		<a id="prevWeek" href="planning.php?page=<?php echo $_GET["page"]-1; ?>">Semaine precedente</a>
+		<a id="nextWeek" href="planning.php?page=<?php echo $_GET["page"]+1; ?>">Semaine suivante</a>
 <?php	
 		}
+		else if($_GET["page"] == 1)
+		{?>
+			<a id="prevWeek" href="planning.php">Semaine precedente</a>
+			<a id="nextWeek" href="planning.php?page=<?php echo $_GET["page"]+1; ?>">Semaine suivante</a>
+<?php	}
 		else
 		{?>
-			<a href="planning.php?page=<?php echo $_GET["page"]+1; ?>">Semaine suivante</a><br/>
+			<a id="nextWeek" href="planning.php?page=<?php echo $_GET["page"]+1; ?>">Semaine suivante</a>
 <?php	}
 	}
 ?>
-
-</table>
