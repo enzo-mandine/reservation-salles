@@ -145,6 +145,17 @@ a {
 	margin:5px;
 }
 
+.date_zone
+{
+	width:50%;
+	margin-right:-17px;
+}
+
+.date_zone>*
+{
+	margin-top:5px;
+}
+
 #greyScreen {
 	position: absolute;
 	top: 0px;

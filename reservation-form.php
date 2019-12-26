@@ -21,25 +21,35 @@
 		<title>Form</title>
 	</head>
 
-	<body>
+	<body class="mp0">
 		<?php include("header.php"); ?>
 		
 		<main>
 			<div id="" class="">
-				<section id="" class="">
-					<form class="" action=""  method="POST">
+				<section id="box" class="">
+					<form class="flexc" action=""  method="POST">
 						
-						<label for="titre">Titre</label>
-						<input type="text" name="titre" />
+						<div class="flexr input_zone">
+							<label for="titre">Titre</label>
+							<input class="input" type="text" name="titre" />
+						</div>
 						
-						<label for="desc">Description</label>
-						<textarea type="text" name="desc"  cols="30" rows="1"></textarea>
+						<div class="flexr input_zone">
+							<label for="desc">Description</label>
+							<textarea class="input" type="text" name="desc"  cols="30" rows="4"></textarea>
+						</div>
 						
-						<label for="dateDebut">Début</label>
-						<input name="dateDebut" type="date"/>
-						<input name="hourDebut" type="time" min="08:00" max="18:00"/>
+						<div class="flexr input_zone">
+							<label>Date</label>
+							<input class="input" name="dateDebut" type="date"/>
+						</div>
+
+						<div class="flexr input_zone">
+							<label>Heure</label>
+							<input class="input" name="hourDebut" type="time" min="08:00" max="18:00"/>
+						</div>
 						
-						<input type="submit" value="Enregistrer" name="submitBtn"/>
+						<input class="button" type="submit" value="Enregistrer" name="submitBtn"/>
 					</form>
 				</section>
 			</div>
