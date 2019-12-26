@@ -13,25 +13,22 @@
 		
 		<main>
 			<?php if(!isset($_SESSION["isconnected"])) { ?>
-				<article>
+				<article id="intro">
 					<h1>LaPlatefrome_ réservation Salle audio/vidéo</h1>
 					<p>Pour pouvoir réserver, <a href="connexion.php">connectez-vous</a> ou <a href="inscritpion.php">inscrivez-vous</a>. </p>
 				</article>
 			<?php } else {  ?>
+				<article id="intro">
+					<h1>Comment réserver ?</h1>
+					<p>Regardez les <a href="planning.php">réservations</a> pour y inscrire la votre.</p>
+					<p>Vous pouvez aussi modifier votre <a href="profil.php">profil</a>.</p>
+				</article>
 			
 			<?php  } ?>
 
-			<article>
-				<h1>Commemt réserver ?</h1>
-				<p>Apres vous etre créer un compte, conectez vous puis rendez vous sur <a href="reservation-form.php">réservation</a> pour y inscrire votre réservation</p>
-			</article>
 			
 		</main>
 		
-		<footer>
-			<div id="" class="">
-				<p class="">Réservations de salles - Laplateforme</p>
-			</div>
-		</footer>
+		<?php include("footer.php"); ?>
 	</body>	
 </html>
