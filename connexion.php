@@ -17,7 +17,7 @@
 		<title>Inscription</title>
 	</head>
 
-	<body>
+	<body class="mp0">
 		<?php 
 			include("header.php"); 
 			if(isset($_GET["error"]))
@@ -49,23 +49,24 @@
 		<main>
 			<div id="" class="">
 				<section id="" class="">
-					<p id="" class="">Page de connexion</p>
-					<form class="" action="" method="POST">
-						<label for="login">Login</label>
-						<input class="" type="text" name="login" placeholder="Login" required>
-						<label for="password">Password</label>
-						<input type="password" name="password" required>
-						<input name="submit" type="submit" value="connexion">
+					<p id="box" class="">Page de connexion</p>
+					<form class="flexc" id="intro" action="" method="POST">
+						<div class="flexr input_zone">
+							<label for="login">Login</label>
+							<input class="input" type="text" name="login" placeholder="Login" required>
+						</div>
+						
+						<div class="flexr input_zone">
+							<label for="password">Password</label>
+							<input class="input" type="password" name="password" required>
+						</div>
+						<input class="button" name="submit" type="submit" value="connexion">
 					</form>
 				</section>
 			</div>
 		</main>
 		
-		<footer>
-			<div id="" class="">
-				<p class="">Réservations de salles - Laplateforme</p>
-			</div>
-		</footer>
+		<?php include("footer.php"); ?>
 	</body>
 
 </html>
