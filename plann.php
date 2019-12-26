@@ -18,7 +18,7 @@
 	
 	$days = array("Lundi","Mardi","Mercredi","Jeudi","Vendredi");
 	
-	$request_reservations = "SELECT titre, utilisateurs.login, date_format(debut,'%w %k %d'), date_format(fin,'%w %k %d') 
+	$request_reservations = "SELECT titre, utilisateurs.login, date_format(debut,'%w %k %d'), date_format(fin,'%w %k %d'), reservations.id 
 							FROM reservations INNER JOIN utilisateurs ON reservations.id_utilisateur = utilisateurs.id
 							WHERE date_format(debut, '%d %c %Y') >= '".$thisWeek." ".$cur_month." ".$year."'";
 	
@@ -66,15 +66,22 @@
 				else
 				{
 					echo "<td>";
+					$is_reserved = false;
 					foreach($reservations as $reservation)
 					{
 						$reservation_day = explode(" ",$reservation[2])[0];
 						$reservation_hour = explode(" ",$reservation[2])[1];
 						
 						if($reservation_day == $day && $reservation_hour == $hour)
-						{
-							echo $reservation[0];
-						}										
+						{?>
+							<a href='reservation.php?id=<?php echo $reservation[4]; ?>'><?php echo $reservation[0]; ?></a>
+					<?php	$is_reserved = true;
+						}						
+					}
+					
+					if(!$is_reserved)
+					{
+						echo "<a href='reservation-form.php'><input class='btn_add' type='button' value='+'></a>";
 					}
 					echo "</td>";									
 				}	
