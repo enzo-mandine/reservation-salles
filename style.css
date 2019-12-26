@@ -139,6 +139,12 @@ a {
 	flex-direction: column;
 }
 
+.input_zone
+{
+	justify-content:space-between;
+	margin:5px;
+}
+
 #greyScreen {
 	position: absolute;
 	top: 0px;

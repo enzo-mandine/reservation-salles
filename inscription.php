@@ -27,14 +27,23 @@
 		<main>
 			<div id="" class="">
 				<section id="" class="">
-					<p id="" class="">Veuillez vous enregistrer pour prendre un créneau.</p>
-					<form id="box" action="inscription.php" method="POST">
-						<label for="login">Login</label>
-						<input class="input" type="text" name="login" placeholder="Login" required>
-						<label for="password">Password</label>
-						<input class="input" type="password" name="password" placeholder="******" required>
-						<label for="passwordconfirm">Confirmez le password</label>
-						<input class="input" type="password" name="passwordconfirm" placeholder="******" required>
+					<p id="box" class="">Veuillez vous enregistrer pour prendre un créneau.</p>
+					<form id="intro" class="flexc" action="inscription.php" method="POST">
+						
+						<div class="input_zone flexr">
+							<label for="login">Login</label>
+							<input class="input" type="text" name="login" placeholder="Login" required>
+						</div>
+						<div class="input_zone flexr">
+							<label for="password">Password</label>
+							<input class="input" type="password" name="password" placeholder="******" required>
+						</div>
+						
+						<div class="input_zone flexr">
+							<label for="passwordconfirm">Confirmez le password</label>
+							<input class="input" type="password" name="passwordconfirm" placeholder="******" required>
+						</div>
+						
 						<input id="" class="button" name="submit" type="submit" value="inscription">
 					</form>
 				</section>
