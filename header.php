@@ -54,6 +54,9 @@
 	<nav class="flexr">
 		<ul class="ul_style_none flexr mp0">
 			<li> <a href="index.php">Accueil</a></li>
+			<li>
+				<a class='' href='planning.php'>Planning</a>
+			</li>
 			
 <?php		if (!isset($_SESSION["isconnected"])) { ?>
 				<li class="">
@@ -65,9 +68,6 @@
 				</li>
 				
 	<?php			} else { ?>
-				<li>
-					<a class='' href='index.php?logout=true'>Deconnexion</a>
-				</li>
 				
 				<li>
 					<a href="reservation-form.php">reservation-form</a>
@@ -77,8 +77,9 @@
 					<a class='' href='profil.php'>Mon compte</a>
 				</li>
 
+
 				<li>
-					<a class='' href='planning.php'>Planning</a>
+					<a class='' href='index.php?logout=true'>Deconnexion</a>
 				</li>
 <?php		}?>
 			

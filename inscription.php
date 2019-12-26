@@ -21,31 +21,27 @@
 		<title>Inscription</title>
 	</head>
 
-	<body>
+	<body class="mp0">
 		<?php include("header.php"); ?>
 		
 		<main>
 			<div id="" class="">
 				<section id="" class="">
 					<p id="" class="">Veuillez vous enregistrer pour prendre un créneau.</p>
-					<form class="" action="inscription.php" method="POST">
+					<form id="box" action="inscription.php" method="POST">
 						<label for="login">Login</label>
-						<input class="" type="text" name="login" placeholder="Login" required>
+						<input class="input" type="text" name="login" placeholder="Login" required>
 						<label for="password">Password</label>
-						<input class="" type="password" name="password" placeholder="******" required>
+						<input class="input" type="password" name="password" placeholder="******" required>
 						<label for="passwordconfirm">Confirmez le password</label>
-						<input class="" type="password" name="passwordconfirm" placeholder="******" required>
-						<input id="" class="" name="submit" type="submit" value="inscription">
+						<input class="input" type="password" name="passwordconfirm" placeholder="******" required>
+						<input id="" class="button" name="submit" type="submit" value="inscription">
 					</form>
 				</section>
 			</div>
 		</main>
 		
-		<footer>
-			<div id="" class="">
-				<p class="">Réservations de salles - Laplateforme</p>
-			</div>
-		</footer>
+		<?php include("footer.php"); ?>
 	</body>
 
 </html>
