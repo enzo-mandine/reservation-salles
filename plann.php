@@ -10,8 +10,6 @@
 		$curTime =  strtotime("+".$_GET["page"]." week", $curTime);
 	}
 	
-	// var_dump($day_of_year, date("d m Y",$curTime));
-	
 	$days = array("Lundi","Mardi","Mercredi","Jeudi","Vendredi");
 	
 	$request_reservations = "SELECT titre, utilisateurs.login, date_format(debut,'%w %k %d'), reservations.id 
