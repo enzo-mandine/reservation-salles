@@ -75,7 +75,7 @@
 			
 			if(empty($isFree))
 			{
-				sql_request("INSERT INTO `reservations` (`id`, `titre`, `description`, `debut`, `fin`, `id_createur`)
+				sql_request("INSERT INTO `reservations` (`id`, `titre`, `description`, `debut`, `fin`, `id_utilisateur`)
 							VALUES (NULL,'".$titre."', '".$description."', '".$dateDebut.":00',
 							'".$dateFin.":00' , '".$_SESSION["id"]."')");							
 			}
