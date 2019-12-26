@@ -1,14 +1,3 @@
-<?php
-	
-	if(isset($_GET["row"]) && isset($_GET["column"]))
-	{
-		$days = array("Lundi","Mardi","Mercredi","Jeudi","Vendredi");
-		$hour = $_GET["row"];
-		$day = $days[$_GET["column"]-1];
-	}
-	
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -80,14 +69,14 @@
 			$dateDebut 	 = 	$_POST["dateDebut"]." ".$_POST["hourDebut"];
 			$dateFin 	 =	$_POST["dateDebut"]." ".date("H", strtotime(strval(intval($_POST["hourDebut"])+1).":00"));
 			
-			
 			$isFree = sql_request("SELECT ID FROM reservations WHERE debut = '".$dateDebut.":00'",true,true);
 			
 			if(empty($isFree))
 			{
 				sql_request("INSERT INTO `reservations` (`id`, `titre`, `description`, `debut`, `fin`, `id_utilisateur`)
 							VALUES (NULL,'".$titre."', '".$description."', '".$dateDebut.":00',
-							'".$dateFin.":00' , '".$_SESSION["id"]."')");							
+							'".$dateFin.":00:00' , '".$_SESSION["id"]."')");
+				header("location:planning.php");
 			}
 			else
 			{
