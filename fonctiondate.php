@@ -12,3 +12,10 @@ $z = 8;
 $y = 0;
 while ($z < 12) {
 }
+
+
+if (isset($_POST["submit"])) {
+   if(!empty(sql_request("SELECT * FROM reservations WHERE id_heures_jours == '".$_GET["location"]."'", true, true))."'") {
+       header("location:reservation-form.php?location='".$_GET["location"]."'");
+   }
+}

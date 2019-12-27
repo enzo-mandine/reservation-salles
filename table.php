@@ -15,7 +15,7 @@
                 while ($i < count($result)) {
                     $yoyo = "<a href=\"reservation-form.php?location=" . $pos . "\"><input class='btn_add' type='button' value='+'></a>";
                     if ($result[$i][6] == $pos) {
-                        $yoyo = "<div class='res_slot'><p class='txt_res_slot'>" . $result[$i][1] . "</p></div>";
+                        $yoyo = "<a class='a_style_res_slot' href=\"reserved.php?res_id= " . $result[$i][0] . "&location=" . $pos . "\"><div class='res_slot'><p class='txt_res_slot'>" . $result[$i][1] . "</p></div></a>";
                         break;
                     }
                     ++$i;
@@ -62,11 +62,11 @@
                     ?>
                 </td>
             <?php
-                    ++$x;
-                }
-                ++$y;
+                ++$x;
+            }
+            ++$y;
             ?>
         </tr>
     <?php
-            }
+    }
     ?>
