@@ -1,8 +1,8 @@
 <?php
-if (isset($_POST["login"])) {
+
+if (isset($_POST["isconnected"])) {
 	header("index.php");
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -14,42 +14,25 @@ if (isset($_POST["login"])) {
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<link rel="stylesheet" href="style.css">
 	<link href="https://fonts.googleapis.com/css?family=Caveat|Open+Sans|Roboto&display=swap" rel="stylesheet">
-	<title>Inscription</title>
+	<title>Mon Compte</title>
 </head>
 
 <body class="mp0">
 	<?php
 	include("header.php");
-	if (isset($_GET["error"])) {
-		if ($_GET["error"] == 0) { ?>
-
-			<div id="greyScreen">
-				<p id="err">Login déja pris <a href="profil.php"><img src="Images/closeBtn.png" /></a></p>
-			</div>
-
-		<?php			} else if ($_GET["error"] == 1) { ?>
-
-			<div id="greyScreen">
-				<p id="err">Le mot de passe n'est pas valide<a href="profil.php"><img src="Images/closeBtn.png" /></a></p>
-			</div>
-
-		<?php			} else if ($_GET["error"] == 2) { ?>
-
-			<div id="greyScreen">
-				<p id="err">Les mot de passes ne correspondent pas <a href="profil.php"><img src="Images/closeBtn.png" /></a></p>
-			</div>
-
-	<?php			}
+	if (isset($_GET["profil"])) {
+		error("Changement effectués");
 	}
-
 	?>
-
 
 	<main>
 		<div id="" class="">
 			<section id="box" class="">
 				<p id="" class="">Modifier le profil de <?php echo $_SESSION["login"]; ?></p>
-				<form class="flexc" action="profil.php" method="POST">
+				<form class="flexc" action="profil.php" method="POST" enctype="multipart/form-data">
+
+					<label for="profilePic">Photo profil</label>
+					<input class="input" type="file" name="profilPic" value="" />
 
 					<label for="login">Login</label>
 					<input class="mb15 input" type="text" name="login" value="<?php echo $_SESSION["login"]; ?>" required>
@@ -78,35 +61,47 @@ if (isset($_POST["login"])) {
 
 
 <?php
+if (isset($_POST["submit"])) {
+	if ($_POST["password"] == $_POST["passwordconfirm"]) {
+		if (strlen($_FILES["profilPic"]["name"]) != 0) {
+			$imgPath = "ProfilPics/" . basename($_FILES["profilPic"]["name"]);
+			$imgType = strtolower(pathinfo($imgPath, PATHINFO_EXTENSION));
+			$newName = "ProfilPics/" . $_SESSION["id"] . "." . $imgType;
 
-																				if (isset($_POST["submit"])) {
-																					if ($_POST["password"] == $_POST["passwordconfirm"]) {
-																						$res = sql_request("SELECT login, password FROM utilisateurs WHERE id = '" . $_SESSION["id"] . "'", true, true);
+			if (file_exists($newName)) {
+				unlink($newName);
+			}
 
-																						if (password_verify($_POST["password"], $res[1])) {
-																							if ($_POST["login"] != $res[0]) {
-																								$res = sql_request("SELECT login FROM utilisateurs WHERE login = '" . $_POST["login"] . "'", true, true);
+			move_uploaded_file($_FILES["profilPic"]["tmp_name"], $imgPath);
+			rename($imgPath, $newName);
 
-																								if (empty($res[0])) {
-																									sql_request("UPDATE utilisateurs SET login = '" . $_POST["login"] . "' WHERE id = '" . $_SESSION["id"] . "'");
-																									$_SESSION["login"] = $_POST["login"];
-																								} else {
-																									header("location:profil.php?error=0");
-																								}
-																							}
+			sql_request("UPDATE utilisateurs SET image ='" . $newName . "' WHERE id =" . $_SESSION["id"]);
+		}
+		$res = sql_request("SELECT login, password FROM utilisateurs WHERE id = '" . $_SESSION["id"] . "'", true, true);
 
-																							if (!empty($_POST["Npassword"])) {
-																								sql_request("UPDATE utilisateurs SET password = '" . password_hash($_POST["Npassword"], PASSWORD_BCRYPT) . "'
+		if (password_verify($_POST["password"], $res[1])) {
+			if ($_POST["login"] != $res[0]) {
+				$res = sql_request("SELECT login FROM utilisateurs WHERE login = '" . $_POST["login"] . "'", true, true);
+
+				if (empty($res[0])) {
+					sql_request("UPDATE utilisateurs SET login = '" . $_POST["login"] . "' WHERE id = '" . $_SESSION["id"] . "'");
+					$_SESSION["login"] = $_POST["login"];
+				} else {
+					header("location:profil.php?error=5");
+				}
+			}
+
+			if (!empty($_POST["Npassword"])) {
+				sql_request("UPDATE utilisateurs SET password = '" . password_hash($_POST["Npassword"], PASSWORD_BCRYPT) . "'
 								 WHERE id = '" . $_SESSION["id"] . "'");
-																							}
+			}
 
-																							header("location:profil.php?profil=true");
-																						} else {
-																							header("location:profil.php?error=1");
-																						}
-																					} else {
-																						header("location:profil.php?error=2");
-																					}
-																				}
-
+			header("location:profil.php?profil=true");
+		} else {
+			header("location:profil.php?error=2");
+		}
+	} else {
+		header("location:profil.php?error=7");
+	}
+}
 ?>

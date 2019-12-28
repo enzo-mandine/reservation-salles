@@ -184,7 +184,10 @@ a {
 
 #include_table {
 	margin: auto;
+	margin-top: 300px;
 	justify-content: center;
+	width: 75vw;
+	height: 50vh;
 }
 
 .a_style {

@@ -14,7 +14,9 @@
 
 	<?php include("header.php"); ?>
 	<main>
-		<article id="intro">Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum, a inventore optio officiis qui quod perferendis provident temporibus iure libero, vero sit distinctio aliquid consequuntur nisi quis eaque, laborum veniam? Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sit quibusdam illo placeat tenetur esse magni id sunt eos, perspiciatis nihil. Minus doloremque nisi dolores eum autem dolorem maiores quos laborum! Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas esse modi quo quasi praesentium laudantium odit rem, culpa quidem deserunt ratione explicabo blanditiis. Odit illo earum nesciunt autem. Eveniet, dolorum.</article>
+		<article id="intro">
+			<p>Bienvenu sur le site de réservation des salles vidéo/audio de La Plateforme_ !<br /> Pour <a href="planning.php">réserver</a> vous devez vous <a href="inscription.php"> inscrire</a>.<br />Vous réservez des créneaux d'une heure de 8h a 18h du lundi au vendredi</p>
+		</article>
 		<a href=<?php if (isset($_SESSION["isconnected"])) {
 					echo "planning.php";
 				} else {
