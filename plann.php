@@ -113,8 +113,8 @@
 						
 						foreach($reservations as $reservation)	{ // On boucle dans les réservations sélectionnées
 							$reservation_day  =	explode(" ",$reservation[2])[0]; // date_format(debut,"%w") -> le jour de la réservation
-							$reservation_hour = explode(" ",$reservation[2])[1]; //date_format(debut,"%c")  -> l'heure de la réservation
-							$reservation_date = explode(" ",$reservation[2])[2]; //date_format(debut,"%Y")  -> la date de la réservation
+							$reservation_hour = explode(" ",$reservation[2])[1]; // date_format(debut,"%c")  -> l'heure de la réservation
+							$reservation_date = explode(" ",$reservation[2])[2]; // date_format(debut,"%Y")  -> la date de la réservation
 							
 							// Si le jour de la réservation correspond a la valeur de $day, que l'heure correspond a la valeur de $hour et que la
 							// date correspond a la date relative a $curTime

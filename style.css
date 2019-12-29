@@ -17,15 +17,18 @@ footer {
 	display: flex;
 	justify-content: center;
 	background-color: #88c0d0c5;
-	height: 5vh;
+	height: 3vh;
 	position: absolute;
 	bottom: 0;
+}
+
+#foot {
 	width: 100%;
 }
 
 .txt_foot {
+	margin-top: 5px;
 	color: white;
-	margin-top:-5px;
 }
 
 a {
@@ -83,7 +86,13 @@ a {
 	border-style: none;
 	background-color: #1098ad;
 	font-size: 12pt;
-	cursor:pointer;
+}
+
+.button:hover {
+	background-color: #ffca4b;
+	padding-left: 30px;
+	padding-right: 30px;
+	font-size: 15pt;
 }
 
 .mb15 {
@@ -139,23 +148,6 @@ a {
 	flex-direction: column;
 }
 
-.input_zone
-{
-	justify-content:space-between;
-	margin:5px;
-}
-
-.date_zone
-{
-	width:50%;
-	margin-right:-17px;
-}
-
-.date_zone>*
-{
-	margin-top:5px;
-}
-
 #greyScreen {
 	position: absolute;
 	top: 0px;
@@ -192,7 +184,10 @@ a {
 
 #include_table {
 	margin: auto;
+	margin-top: 300px;
 	justify-content: center;
+	width: 75vw;
+	height: 50vh;
 }
 
 .a_style {
@@ -233,50 +228,4 @@ a {
 	}
 }
 
-
-
-
-/*------------------TABLE-----------------*/
-
-table
-{
-	width:fit-content;
-	margin:auto;
-}
-
-table tr td
-{
-	width:120px;
-	height:30px;
-	margin:auto;text-align:center;
-}
-
-table td input
-{
-	background-color:orange;
-	border:1px solid yellow;
-	color:white;
-	cursor:pointer;
-	
-	transition:all 0.4s ease;
-}
-
-table td input:hover
-{
-	background-color:yellow;
-	color:orange;
-	border-color:orange;
-}
-
-.red
-{
-	background-image:linear-gradient(45deg,);
-}
-
-#prevWeek{
-	float:left;
-}
-
-#nextWeek {
-	float:right;
-}
+/* end import */
