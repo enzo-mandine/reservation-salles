@@ -8,22 +8,26 @@
 <?php //On affiche le boutton pour avancer a la semaine prochaine en définissant $_GET["page"] a 1
 	}
 	else
-	{  if($_GET["page"] > 1) { // Si $_GET["page"] est supérieur a 1
+	{  if($_GET["page"] > 1 && $_GET["page"] != 4) { // Si $_GET["page"] est supérieur a 1
 	?>
-	<!--On affiche les boutons pour avancer ($_GET["page"]+1) et pour reculer ($_GET["page"]-1) -->
-	<div class="flexr spacebetween">
-		<a id="prevWeek" href="planning.php?page=<?php echo $_GET["page"]-1; ?>"><input type="button" class="btn" value="&#x2B9C" > </a>
-		<a id="nextWeek" href="planning.php?page=<?php echo $_GET["page"]+1; ?>"><input type="button" class="btn" value="&#x2B9E" ></a>
-	</div>	
+		<!--On affiche les boutons pour avancer ($_GET["page"]+1) et pour reculer ($_GET["page"]-1) -->
+		<div class="flexr spacebetween">
+			<a id="prevWeek" href="planning.php?page=<?php echo $_GET["page"]-1; ?>"><input type="button" class="btn" value="&#x2B9C" > </a>
+			<a id="nextWeek" href="planning.php?page=<?php echo $_GET["page"]+1; ?>"><input type="button" class="btn" value="&#x2B9E" ></a>
+		</div>	
 <?php	
 		}
-		else if($_GET["page"] == 1) // Si $_GET["page"] vaut 1
-		{?>
-		<!-- On affiche le bouton pour avancer ($_GET["page"]+1) et le bouton pour revenir a la semaine en cour redirige vers planning.php-->
-		<div class="flexr spacebetween">
-			<a id="prevWeek" href="planning.php"><input type="button" class="btn" value="&#x2B9C" > </a>
-			<a id="nextWeek" href="planning.php?page=<?php echo $_GET["page"]+1; ?>"><input type="button" class="btn" value="&#x2B9E" ></a>
-		</div>
+		else if($_GET["page"] == 1)	{  // Si $_GET["page"] vaut 1	?>
+			<!-- On affiche le bouton pour avancer ($_GET["page"]+1) et le bouton pour revenir a la semaine en cour redirige vers planning.php-->
+			<div class="flexr spacebetween">
+				<a id="prevWeek" href="planning.php"><input type="button" class="btn" value="&#x2B9C" > </a>
+				<a id="nextWeek" href="planning.php?page=<?php echo $_GET["page"]+1; ?>"><input type="button" class="btn" value="&#x2B9E" ></a>
+			</div>
+<?php	}
+		else if ($_GET["page"] == 4) {?>
+			<div class="flexr spacebetween">
+				<a id="nextWeek" href="planning.php?page=<?php echo $_GET["page"]-1; ?>"><input type="button" class="btn" value="&#x2B9C" ></a>
+			</div>
 <?php	}
 	}
 ?>
@@ -32,12 +36,14 @@
 <table class="table_res">
 
 <?php
-
-	$year = getdate()["year"];  //Année actuelle
+	$today = getdate()[0];
 	
-	$day_of_year = getdate()["yday"]; //Jour actuel entre 0 et 365
-	
-	$curTime = strtotime("last monday"); //Temp Unix du dernier lundi
+	if (getdate()["wday"] == 6 && getdate()["wday"] == 7) { // Si nous somme un week-end
+		$curTime = strtotime("monday"); //Temp Unix du prochain lundi
+	}
+	else { 
+		$curTime = strtotime("last monday"); //Temp Unix du dernier lundi
+	}
 	
 	
 	if(isset($_GET["page"])) {
@@ -73,7 +79,7 @@
 	
 	$hour = 7; // Les réservations commencent a 8h mais on a besoin d'une ligne en plus pour les <thead>
 	
-	while($hour < 20) //On doit faire 12 tours de boucle pour afficher toutes les heures de 8h a 18h + les <thead>
+	while($hour < 19) //On doit faire 12 tours de boucle pour afficher toutes les heures de 8h a 18h + les <thead>
 	{ 
 		$day = 0; // A chaque ligne, on redéfinis les jours a 0
 		
@@ -103,34 +109,64 @@
 			}
 			else //Sinon, nous somme entre la deuxieme ligne et la deuxieme colonne (en dessous de la ligne des jours et a droite de la colonne des heures)
 			{
-				if ( getdate()[0] > date("U", strtotime("+".($day-1)." day",$curTime))) { // Si la date actuelle est supérieure a la date affiché dans le tableau
-					echo "<td class='red'></td>"; // On affiche une case non réservable
-				}	
+				
+				$checkReserv = false;
+				
+				$curYear = date("Y",$today);				
+				$displayYear = date("Y", strtotime("+".($day-1)." day", $curTime) );
+				
+				// Si la date actuelle est supérieure a la date affiché dans le tableau
+				if( $curYear >= $displayYear) {
+					if($curYear == $displayYear) {
+						$curMonth = date("m",$today);
+						$displayMonth = date("m", strtotime("+".($day-1)." day", $curTime) );
+						
+						if($curMonth >= $displayMonth) {
+							if($curMonth == $displayMonth) {
+								$curDate = date("j", $today);
+								$displayDate = date("j", strtotime("+".($day-1)." day", $curTime) );
+								
+								if($curDate >= $displayDate) {
+									if($curDate == $displayDate) {
+										$curHour = getdate()["hours"];
+										$displayHour = $hour;
+										
+										if($curHour+1 >= $displayHour) {
+											echo "<td class='red'></td>";
+										}
+										else {
+											$checkReserv = true;
+										}
+									}
+									else {
+										echo "<td class='red'></td>";
+									}
+								}
+								else {
+									$checkReserv = true;
+								}
+
+							}
+							else {
+								echo "<td class='red'></td>";
+							}
+						}
+						else {
+							$checkReserv = true;
+						}
+					}
+					else {
+						echo "<td class='red'></td>";						
+					}
+				}
 				else {
-					echo "<td>";
-					
-						$is_reserved = false; // Vérificateur de réservation (voir ligne 117)
-						
-						foreach($reservations as $reservation)	{ // On boucle dans les réservations sélectionnées
-							$reservation_day  =	explode(" ",$reservation[2])[0]; // date_format(debut,"%w") -> le jour de la réservation
-							$reservation_hour = explode(" ",$reservation[2])[1]; // date_format(debut,"%c")  -> l'heure de la réservation
-							$reservation_date = explode(" ",$reservation[2])[2]; // date_format(debut,"%Y")  -> la date de la réservation
-							
-							// Si le jour de la réservation correspond a la valeur de $day, que l'heure correspond a la valeur de $hour et que la
-							// date correspond a la date relative a $curTime
-							if($reservation_day == $day && $reservation_hour == $hour && $reservation_date == date("d", strtotime("+".($day-1)." day",$curTime)))	{?>
-								<a href='reservation.php?id=<?php echo $reservation[3]; ?>'><?php echo $reservation[0]; ?></a> 
-						<?php	$is_reserved = true; // On affiche le titre de la réservation dans un lien qui redirige vers la page de reservation
-													 // avec l'id de la reservation en get et on précise que la case est reservée avec $is_reserved
-							}						
-						}
-						
-						if(!$is_reserved)	{ // Si la case n'a pas de réservation associé on affiche un bouton pour prendre une réservation
-							echo "<a href='reservation-form.php'><input class='btn_add' type='button' value='+'></a>";
-						}
-					
-					echo "</td>";									
-				}	
+					$checkReserv = true;
+				}
+
+				if($checkReserv)
+				{
+					check_reservation($reservations,$day,$hour,$curTime);
+				}					
 			}
 			$day ++;
 		}
