@@ -56,7 +56,7 @@ if (!isset($_GET["page"])) { ?>
 	*/
 	$request_reservations = "SELECT titre, utilisateurs.login, date_format(debut,'%w %k %d %m'), reservations.id 
 							FROM reservations INNER JOIN utilisateurs ON reservations.id_utilisateur = utilisateurs.id
-							WHERE date_format(debut, '%Y%c%d') >= '".date("Ymd",$curTime)."' AND date_format(debut, '%Y%c%d') < '".date("Ymd", strtotime("next monday", $curTime))."'";
+							WHERE date_format(debut, '%Y%c%d') >= '".date("Ymd",$curTime)."'";
 	
 	$reservations = sql_request($request_reservations, true);
 	
