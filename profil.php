@@ -83,7 +83,7 @@ if (isset($_POST["submit"])) {
 				$res = sql_request("SELECT login FROM utilisateurs WHERE login = '" . $_POST["login"] . "'", true, true);
 
 				if (empty($res[0])) {
-					sql_request("UPDATE utilisateurs SET login = '" . $_POST["login"] . "' WHERE id = '" . $_SESSION["id"] . "'");
+					sql_request("UPDATE utilisateurs SET login = '" . htmlspecialchars($_POST["login"]) . "' WHERE id = '" . $_SESSION["id"] . "'");
 					$_SESSION["login"] = $_POST["login"];
 				} else {
 					header("location:profil.php?error=5");

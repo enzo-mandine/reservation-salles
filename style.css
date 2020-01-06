@@ -12,7 +12,10 @@ header {
 	height: 4vh;
 	background-color: #88c0d0c5;
 }
-
+#closeBtn{
+	width: 50px;
+	height: 50px;
+}
 #foot2 {
 	position: absolute;
 	bottom: -3000;
