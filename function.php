@@ -33,7 +33,7 @@
 	function error($str)
 	{ ?>
 		<div class="err">
-			<p><?php echo $str; ?><a href="index.php"><img src="Images/closeBtn.png"/></a></p>
+			<p><?php echo $str; ?><a href="index.php"><img id="closeBtn" src="Images/closeBtn.png"/></a></p>
 		</div>
 <?php 
 	}  
