@@ -1,5 +1,27 @@
 <link rel="stylesheet" href="tablestyle.css">
 <?php
+
+
+$today = getdate()[0];
+
+if (getdate()["wday"] == 6 && getdate()["wday"] == 7) { // Si nous somme un week-end
+	$curTime = strtotime("monday"); //Temp Unix du prochain lundi
+}
+else { 
+	$curTime = strtotime("monday"); //Temp Unix du dernier lundi
+}
+
+if(isset($_GET["page"])) {
+	/*
+		Si on veut accéder aux semaines suivantes, on redefinis $curTime en temps unix 
+		en y ajoutant $_GET["page"] semaine(s)	en partant du dernier $curTime (du dernier lundi enregistré)
+	*/
+	$curTime =  strtotime("+".$_GET["page"]." week", $curTime); 
+}
+
+echo "<h1 class='txt_center'>".date("F", $curTime)."</h1>";
+
+
 if (!isset($_GET["page"])) { ?>
 	<a id="nextWeek" class="flexr flexend" href="planning.php?page=1"> <input type="button" class="btn" value="&#x2B9E"> </a>
 	<?php
@@ -19,33 +41,13 @@ if (!isset($_GET["page"])) { ?>
 		<a id="nextWeek" href="planning.php?page=<?php echo $_GET["page"] + 1; ?>"><input type="button" class="btn mb15" value="&#x2B9E"></a>
 <?php	}
 }
+
 ?>
 <table class="table_res">
 
 	<?php
 	
-	$today = getdate()[0];
-	
-	if (getdate()["wday"] == 6 && getdate()["wday"] == 7) { // Si nous somme un week-end
-		$curTime = strtotime("monday"); //Temp Unix du prochain lundi
-	}
-	else { 
-		$curTime = strtotime("monday"); //Temp Unix du dernier lundi
-	}
-	
-	
-	if(isset($_GET["page"])) {
-		/*
-			Si on veut accéder aux semaines suivantes, on redefinis $curTime en temps unix 
-			en y ajoutant $_GET["page"] semaine(s)	en partant du dernier $curTime (du dernier lundi enregistré)
-		*/
-		$curTime =  strtotime("+".$_GET["page"]." week", $curTime); 
-	}
-	
-	
-	$days = array("Lundi","Mardi","Mercredi","Jeudi","Vendredi"); // Permet d'afficher les jours de la semaine en francais
-	
-	
+
 	
 	/* 
 		On sélectionne les titre, nom d'utilisateurs, date et id 
@@ -54,7 +56,7 @@ if (!isset($_GET["page"])) { ?>
 	*/
 	$request_reservations = "SELECT titre, utilisateurs.login, date_format(debut,'%w %k %d %m'), reservations.id 
 							FROM reservations INNER JOIN utilisateurs ON reservations.id_utilisateur = utilisateurs.id
-							WHERE date_format(debut, '%Y%c%d') >= '".date("Ymd",$curTime)."'";
+							WHERE date_format(debut, '%Y%c%d') >= '".date("Ymd",$curTime)."' AND date_format(debut, '%Y%c%d') < '".date("Ymd", strtotime("next monday", $curTime))."'";
 	
 	$reservations = sql_request($request_reservations, true);
 	
