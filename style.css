@@ -213,7 +213,7 @@ a {
 }
 /* import */
 
-.gradient-border:hover {
+.gradient-border{
 	transition: 0.1s;
 	--borderWidth: 3px;
 	position: relative;
