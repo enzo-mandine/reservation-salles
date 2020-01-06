@@ -1,8 +1,10 @@
 <?php
 
-if (isset($_POST["isconnected"])) {
-	header("index.php");
+if (!isset($_SESSION["login"])) {
+	header("location:index.php");
+	die;
 }
+var_dump($_SESSION["login"]);
 ?>
 
 <!DOCTYPE html>

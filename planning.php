@@ -10,15 +10,17 @@
 </head>
 
 <body class="mp0">
-    <?php include("header.php"); ?>
+    <div class="flexc">
+        <?php include("header.php"); ?>
 
-    <main>
-        <div id="include_table" class="flexc">
-            <?php include("plann.php"); ?>
-        </div>
-    </main>
+        <main>
+            <div id="include_table" class="flexc">
+                <?php include("plann.php"); ?>
+            </div>
+        </main>
 
-    <?php include("footer.php"); ?>
+        <?php include("footer.php"); ?>
+    </div>
 </body>
 
 </html>
