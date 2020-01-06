@@ -2,82 +2,86 @@
 <html lang="fr">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="style.css">
-    <title>Reservation</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="style.css">
+	<link href="https://fonts.googleapis.com/css?family=Caveat|Open+Sans|Roboto&display=swap" rel="stylesheet">
+	<title>Reservation</title>
 </head>
 
 <body class="mp0">
+	<?php include("header.php"); ?>
 
-    <main>
-        <?php include("header.php"); ?>
-        <div id="box">
-            <form action="" method="POST">
-                <div class="flexr">
-                    <div>
-                        <label for="titre">Titre de l'évenement</label>
-                        <br>
-							<input class="input mb15" type="text" name="titre" placeholder="Mon évènement" required>
-                        <br>
-							<label for="start">Début</label>
-                        <br>
-							<input class="input mb15" type="datetime-local" name="start">
-                        <br>
-							<label for="end">Fin</label>
-                        <br>
-							<input class="input mb15" type="datetime-local"  name="end">
-                    </div>
-                    <div id="png_calendar"></div>
-                </div>
-                <br>
-					<label for="description">Description de mon évènement</label>
-                <br>
-					<textarea class="txt_area mb15" name="description" placeholder="Décrivez votre évènement ici" required></textarea>
-                <br>
-					<input class="button gradient-border flexr center" name="submit" type="submit" value="Reserver">
+	<main>
+		<div id="box">
+			<form action="" method="POST">
+				<div class="flexr">
+					<div>
+						<label for="titre">Titre de l'évenement</label>
+						<br>
+						<input class="input mb15" type="text" name="titre" placeholder="Mon évènement" required>
+						<br>
+						<label for="dateDebut">Date</label>
+						<br>
+						<input class="input mb15" type="date" name="dateDebut">
+						<br>
+						<label for="hourDebut">Heure</label>
+						<br>
+						<input class="input mb15" type="time" min="08:00" max="18:00" name="hourDebut">
+					</div>
+					<div id="png_calendar"></div>
+				</div>
+				<br>
+				<label for="desc">Description de mon évènement</label>
+				<br>
+				<textarea class="txt_area mb15" name="desc" placeholder="Décrivez votre évènement ici" required></textarea>
+				<br>
+				<input class="button gradient-border flexr center" name="submitBtn" type="submit" value="Reserver">
 
-            </form>
-        </div>
-    </main>
+			</form>
+		</div>
+	</main>
 
-    <?php include("footer.php"); ?>
+	<?php include("footer.php"); ?>
 </body>
 
 </html>
 
-
 <?php
 
-	if(isset($_POST["submit"])) {
-		$verify = true;
-		$count = 0;
-		foreach($_POST as $input=>$value) {
-			if(empty($value)) {
-				header("reservation-form.php?error=3");
-				$verify = false;
-				break;
-			}
-			$count++;
-		}
-		
-		if($verify) {
+	if(!isset($_SESSION["isconnected"]))
+	{
+		header("location:connexion.php");
+	}
+
+	if(isset($_POST["submitBtn"]))
+	{
+		if(required($_POST))
+		{
+			$titre 		 =	$_POST["titre"];
+			$description = 	$_POST["desc"];
+			$dateDebut 	 = 	$_POST["dateDebut"]." ".$_POST["hourDebut"];
+			$dateFin 	 =	$_POST["dateDebut"]." ".date("H", strtotime(strval(intval($_POST["hourDebut"])+1).":00"));
 			
-			if(!empty(sql_request("SELECT * FROM reservations WHERE date = '".date("Y/m/d H:i", strtotime($_POST["start"]))."'", true, true))."'") {
-				header("location:reservation-form?error=4");
+			$isFree = sql_request("SELECT ID FROM reservations WHERE debut = '".$dateDebut.":00'",true,true);
+			
+			if(empty($isFree))
+			{
+				sql_request("INSERT INTO `reservations` (`id`, `titre`, `description`, `debut`, `fin`, `id_utilisateur`)
+							VALUES (NULL,'".$titre."', '".$description."', '".$dateDebut.":00',
+							'".$dateFin.":00:00' , '".$_SESSION["id"]."')");
+				header("location:planning.php");
 			}
 			else
 			{
-				sql_request("INSERT INTO `reservations` (`id`, `titre`, `description`, `debut`, `fin`, `pos`, `id_createur`)
-							VALUES (NULL,'".$_POST["titre"]."' , '".$_POST["description"]."' , '".date("Y/m/d H:i", strtotime($_POST["start"]))."'
-							, '".date("Y/m/d H:i", strtotime($_POST["end"]))."' , '".$_GET["location"]."' , '".$_SESSION["id"]."')");
+				header("location:reservation-form.php?error=3");
 			}
-		}	
+			
+		}
+		else
+		{
+			header("location:reservation-form.php?error=4");
+		}
 	}
-
-
-
-
-
 ?>

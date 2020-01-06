@@ -13,6 +13,16 @@ header {
 	background-color: #88c0d0c5;
 }
 
+#foot2 {
+	position: absolute;
+	bottom: -3000;
+ 	display: flex;
+	justify-content: center;
+	background-color: #88c0d0c5;
+	height: 3vh;
+	width: 100%;
+}
+
 footer {
 	display: flex;
 	justify-content: center;
@@ -193,6 +203,10 @@ a {
 .a_style {
     text-decoration: none;
     color: #ffca4b;
+}
+
+.max_width {
+	max-width: 500px;
 }
 /* import */
 

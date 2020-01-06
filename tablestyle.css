@@ -66,22 +66,20 @@ input[type='button'] {
 }
 
 .res_slot {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    text-align: center;
     width: 100%;
     height: 100%;
     border-radius: 5px;
+    border-style: none;
     background-color: #275fa0;
 }
 
 .res_slot:hover {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    text-align: center;
     width: 100%;
     height: 100%;
     border-radius: 5px;
+    border-style: none;
     background-color: #17385d;
 }
 
@@ -93,4 +91,8 @@ input[type='button'] {
 .a_style_res_slot {
     text-decoration: none;
     color: black;
+}
+
+.mb15 {
+    margin-bottom: 15px;
 }

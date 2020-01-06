@@ -1,12 +1,3 @@
-<?php
-
-if (!isset($_SESSION["login"])) {
-	header("location:index.php");
-	die;
-}
-var_dump($_SESSION["login"]);
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -22,6 +13,10 @@ var_dump($_SESSION["login"]);
 <body class="mp0">
 	<?php
 	include("header.php");
+	if (!isset($_SESSION["login"])) {
+		header("location:index.php");
+		die;
+	}
 	if (isset($_GET["profil"])) {
 		error("Changement effectués");
 	}
@@ -33,8 +28,10 @@ var_dump($_SESSION["login"]);
 				<p id="" class="">Modifier le profil de <?php echo $_SESSION["login"]; ?></p>
 				<form class="flexc" action="profil.php" method="POST" enctype="multipart/form-data">
 
+					<!--
 					<label for="profilePic">Photo profil</label>
 					<input class="input" type="file" name="profilPic" value="" />
+					-->
 
 					<label for="login">Login</label>
 					<input class="mb15 input" type="text" name="login" value="<?php echo $_SESSION["login"]; ?>" required>

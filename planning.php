@@ -18,8 +18,6 @@
                 <?php include("plann.php"); ?>
             </div>
         </main>
-
-        <?php include("footer.php"); ?>
     </div>
 </body>
 
