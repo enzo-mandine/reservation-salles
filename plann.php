@@ -52,7 +52,7 @@ if (!isset($_GET["page"])) { ?>
 		des réservation enregistré apres $curTime ( WHERE date_format(debut, '%d %c %Y') >= date("d m Y",$curTime) )
 		
 	*/
-	$request_reservations = "SELECT titre, utilisateurs.login, date_format(debut,'%w %k %d'), reservations.id 
+	$request_reservations = "SELECT titre, utilisateurs.login, date_format(debut,'%w %k %d %m'), reservations.id 
 							FROM reservations INNER JOIN utilisateurs ON reservations.id_utilisateur = utilisateurs.id
 							WHERE date_format(debut, '%Y%c%d') >= '".date("Ymd",$curTime)."'";
 	
