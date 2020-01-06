@@ -171,11 +171,14 @@ a {
 }
 
 #err {
-	color: red;
+	position: absolute;
+	top: 20vh;
+	left: 44vw;
+	color: #5073b8;
 	margin: auto;
 	background-color: white;
-	border-radius: 10px;
-	border: 5px solid black;
+	border-radius: 5px;
+	border: 2px solid #5073b8;
 	width: 200px;
 	padding: 3px;
 	margin-top: 10%;
