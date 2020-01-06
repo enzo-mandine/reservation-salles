@@ -19,7 +19,7 @@ if(isset($_GET["page"])) {
 	$curTime =  strtotime("+".$_GET["page"]." week", $curTime); 
 }
 
-echo "<h1 class='txt_center'>".date("F", $curTime)."</h1>";
+echo "<h1 id='box' class='txt_center'>".date("F", $curTime)."</h1>";
 
 
 if (!isset($_GET["page"])) { ?>
