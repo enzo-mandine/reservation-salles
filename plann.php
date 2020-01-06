@@ -23,71 +23,149 @@ if (!isset($_GET["page"])) { ?>
 <table class="table_res">
 
 	<?php
-
-	$year = getdate()["year"];
-	$day_of_year = getdate()["yday"];
-	$curTime = strtotime("monday");
-
-	if (isset($_GET["page"])) {
-		$curTime =  strtotime("+" . $_GET["page"] . " week", $curTime);
+	
+	$today = getdate()[0];
+	
+	if (getdate()["wday"] == 6 && getdate()["wday"] == 7) { // Si nous somme un week-end
+		$curTime = strtotime("monday"); //Temp Unix du prochain lundi
 	}
-
-	$days = array("Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi");
-
+	else { 
+		$curTime = strtotime("monday"); //Temp Unix du dernier lundi
+	}
+	
+	
+	if(isset($_GET["page"])) {
+		/*
+			Si on veut accéder aux semaines suivantes, on redefinis $curTime en temps unix 
+			en y ajoutant $_GET["page"] semaine(s)	en partant du dernier $curTime (du dernier lundi enregistré)
+		*/
+		$curTime =  strtotime("+".$_GET["page"]." week", $curTime); 
+	}
+	
+	
+	$days = array("Lundi","Mardi","Mercredi","Jeudi","Vendredi"); // Permet d'afficher les jours de la semaine en francais
+	
+	
+	
+	/* 
+		On sélectionne les titre, nom d'utilisateurs, date et id 
+		des réservation enregistré apres $curTime ( WHERE date_format(debut, '%d %c %Y') >= date("d m Y",$curTime) )
+		
+	*/
 	$request_reservations = "SELECT titre, utilisateurs.login, date_format(debut,'%w %k %d'), reservations.id 
 							FROM reservations INNER JOIN utilisateurs ON reservations.id_utilisateur = utilisateurs.id
-							WHERE date_format(debut,'%d %c %Y') >= '" . date("d m Y", $curTime) . "'";
-
+							WHERE date_format(debut, '%Y%c%d') >= '".date("Ymd",$curTime)."'";
+	
 	$reservations = sql_request($request_reservations, true);
-
-	$hour = 7;
-	while ($hour < 20) {
-		$day = 0;
-
-		if ($hour == 7) {
+	
+	
+	/*
+		Les heures sont les lignes du tableau
+		Les jours sont les colonnes du tableau
+	*/
+	
+	
+	$hour = 7; // Les réservations commencent a 8h mais on a besoin d'une ligne en plus pour les <thead>
+	
+	while($hour < 19) //On doit faire 12 tours de boucle pour afficher toutes les heures de 8h a 18h + les <thead>
+	{ 
+		$day = 0; // A chaque ligne, on redéfinis les jours a 0
+		
+		
+		if($hour == 7) // Si c'est la premiere ligne, on ouvre les <thead> pour y écrire date et jour
+		{
 			echo "<thead>";
-		} else {
+		}
+		else // Sinon, on laisse un <tr> pour y écrire nos réservations
+		{
 			echo "<tr>";
 		}
 
-		while ($day < 6) {
-			if ($hour == 7 && $day > 0) {
-				echo "<th>" . date("l d", strtotime("monday +" . ($day - 1) . " day", $curTime)) . "</th>";
-			} else if ($day == 0 && $hour > 7) {
-				echo "<td>" . $hour . "h</td>";
-			} else if ($day == 0 && $hour == 7) {
-				echo "<td></td>";
-			} else {
-				if (getdate()[0] > date("U", strtotime("+" . ($day - 1) . " day", $curTime))) {
-					echo "<td class='red'></td>";
-				} else {
-					echo "<td>";
-					$is_reserved = false;
-					foreach ($reservations as $reservation) {
-						$reservation_day = explode(" ", $reservation[2])[0];
-						$reservation_hour = explode(" ", $reservation[2])[1];
-						$reservation_date = explode(" ", $reservation[2])[2];
+		while($day < 6) // A chaque tour de ligne, on doit mettre 6 colonnes pour les jours
+		{
+			if($hour == 7 && $day > 0) // Si c'est la deuxieme (ou plus) colonne de la premiere ligne
+			{
+				echo "<th>".date("l d", strtotime("monday +".($day-1)." day", $curTime))."</th>"; // On affiche le jour et la date
+			}
+			else if($hour > 7 && $day == 0) // Si c'est la deuxieme (ou plus) ligne et la premiere colonne
+			{
+				echo "<td>".$hour."h</td>"; // On affiche l'heure
+			}
+			else if($day == 0 && $hour == 7) // Si c'est la premiere ligne et la premiere colonne
+			{
+				echo "<td></td>"; // On affiche un <td> vide
+			}
+			else //Sinon, nous somme entre la deuxieme ligne et la deuxieme colonne (en dessous de la ligne des jours et a droite de la colonne des heures)
+			{
+				
+				$checkReserv = false;
+				
+				$curYear = date("Y",$today);				
+				$displayYear = date("Y", strtotime("+".($day-1)." day", $curTime) );
+				
+				// Si la date actuelle est supérieure a la date affiché dans le tableau
+				if( $curYear >= $displayYear) {
+					if($curYear == $displayYear) {
+						$curMonth = date("m",$today);
+						$displayMonth = date("m", strtotime("+".($day-1)." day", $curTime) );
+						
+						if($curMonth >= $displayMonth) {
+							if($curMonth == $displayMonth) {
+								$curDate = date("j", $today);
+								$displayDate = date("j", strtotime("+".($day-1)." day", $curTime) );
+								
+								if($curDate >= $displayDate) {
+									if($curDate == $displayDate) {
+										$curHour = getdate()["hours"];
+										$displayHour = $hour;
+										
+										if($curHour+1 >= $displayHour) {
+											echo "<td class='red'></td>";
+										}
+										else {
+											$checkReserv = true;
+										}
+									}
+									else {
+										echo "<td class='red'></td>";
+									}
+								}
+								else {
+									$checkReserv = true;
+								}
 
-						if ($reservation_day == $day && $reservation_hour == $hour && $reservation_date == date("d", strtotime("+" . ($day - 1) . " day", $curTime))) { ?>
-							<a href='reserved.php?id=<?php echo $reservation[3]; ?>'><input class='res_slot' type='button' value="<?php echo $reservation[0]; ?>"></a>
-	<?php $is_reserved = true;
+							}
+							else {
+								echo "<td class='red'></td>";
+							}
+						}
+						else {
+							$checkReserv = true;
 						}
 					}
-
-					if (!$is_reserved) {
-						echo "<a href='reservation-form.php'><input class='btn_add' type='button' value='+'></a>";
+					else {
+						echo "<td class='red'></td>";						
 					}
-
-					echo "</td>";
 				}
-			}
-			$day++;
-		}
+				else {
+					$checkReserv = true;
+				}
 
-		if ($hour == 7) {
+				if($checkReserv)
+				{
+					check_reservation($reservations,$day,$hour,$curTime);
+				}					
+			}
+			$day ++;
+		}
+		
+		if($hour == 7) // Si c'est la premiere ligne, on ferme le <thead>
+		{
 			echo "</thead>";
-		} else {
-			echo "</tr>";
+		}
+		else // Sinon on ferme le <tr>
+		{
+			echo "</tr>";			
 		}
 		$hour++;
 	}
