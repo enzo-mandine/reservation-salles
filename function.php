@@ -32,8 +32,10 @@
 	
 	function error($str)
 	{ ?>
-		<div id="err">
-			<p><?php echo $str; ?><a href="index.php"><img id="closeBtn" src="Images/closeBtn.png"/></a></p>
+		<div id="greyScreen">
+			<div id="err">
+				<p><?php echo $str; ?><a href="index.php"><img src="Images/closeBtn.png"/></a></p>
+			</div>
 		</div>
 <?php 
 	}  
