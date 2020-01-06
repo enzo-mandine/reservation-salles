@@ -42,7 +42,7 @@
 		$curTime = strtotime("monday"); //Temp Unix du prochain lundi
 	}
 	else { 
-		$curTime = strtotime("last monday"); //Temp Unix du dernier lundi
+		$curTime = strtotime("monday"); //Temp Unix du dernier lundi
 	}
 	
 	
