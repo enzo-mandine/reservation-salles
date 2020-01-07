@@ -1,14 +1,13 @@
 <link rel="stylesheet" href="tablestyle.css">
 <?php
 
-
 $today = getdate()[0];
 
 if (getdate()["wday"] == 6 && getdate()["wday"] == 7) { // Si nous somme un week-end
-	$curTime = strtotime("monday"); //Temp Unix du prochain lundi
+	$curTime = strtotime("next monday"); //Temp Unix du prochain lundi
 }
 else { 
-	$curTime = strtotime("monday"); //Temp Unix du dernier lundi
+	$curTime = strtotime("last monday"); //Temp Unix du dernier lundi
 }
 
 if(isset($_GET["page"])) {
