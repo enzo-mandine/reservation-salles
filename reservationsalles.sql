@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  lun. 06 jan. 2020 à 18:20
+-- Généré le :  mar. 07 jan. 2020 à 13:02
 -- Version du serveur :  5.7.26
 -- Version de PHP :  7.2.18
 
@@ -63,6 +63,7 @@ CREATE TABLE IF NOT EXISTS `utilisateurs` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `login` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
+  `avatar` varchar(255) NOT NULL COMMENT 'name = id.png',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
@@ -70,10 +71,10 @@ CREATE TABLE IF NOT EXISTS `utilisateurs` (
 -- Déchargement des données de la table `utilisateurs`
 --
 
-INSERT INTO `utilisateurs` (`id`, `login`, `password`) VALUES
-(1, 'admin', 'admin'),
-(2, 'enzo', '$2y$10$a1O.RjG/zzLOtGou2xSKA.oieDDWPM1hq0YjGFZjG.fmfmAyD7DVW'),
-(5, 'eti', '$2y$10$RMWyoU9JDo.5ybp/vTUpGusDYuWsrL5G1H4l0cFx0Ixy7nfMefgtC');
+INSERT INTO `utilisateurs` (`id`, `login`, `password`, `avatar`) VALUES
+(1, 'admin', 'admin', ''),
+(2, 'Enzo', '$2y$10$T7RHDI3nytLklPANiNe8D.R/VaraMOr.mIKW8HJzJCDoM4TOAbvku', ''),
+(5, 'eti', '$2y$10$RMWyoU9JDo.5ybp/vTUpGusDYuWsrL5G1H4l0cFx0Ixy7nfMefgtC', '');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
