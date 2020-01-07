@@ -11,11 +11,11 @@
 				
 				<div id="day-zone" class="input-zone">
 					<label for="jour">Quels jours :</label>
-					<input type="checkbox" class="" value="Monday" name="jour">Lundi
-					<input type="checkbox" class="" value="Tuesday" name="jour">Mardi
-					<input type="checkbox" class="" value="Wednesday" name="jour">Mercredi
-					<input type="checkbox" class="" value="Thursday" name="jour">Jeudi
-					<input type="checkbox" class="" value="Friday" name="jour">Vendredi
+					<input type="checkbox" class="" value="Monday" name="Monday">Lundi
+					<input type="checkbox" class="" value="Tuesday" name="Tuesday">Mardi
+					<input type="checkbox" class="" value="Wednesday" name="Wednesday">Mercredi
+					<input type="checkbox" class="" value="Thursday" name="Thursday">Jeudi
+					<input type="checkbox" class="" value="Friday" name="Friday">Vendredi
 				</div>
 				
 				<div class="input-zone">
@@ -25,7 +25,7 @@
 				
 				<div class="input-zone">
 					<label for="date">A partir</label>
-					<input type="datetime-local" name="date"/>
+					<input type="datetime-local" name="date" value="2020-01-08T08:00"/>
 				</div>
 				
 				<div class="input-zone">
@@ -98,3 +98,16 @@
 		flex-direction:column;
 	}
 </style>
+
+
+<?php
+	include("function.php");
+	
+	if(isset($_POST["submitBtn"])) {
+		if(!empty($_POST["Monday"]) || !empty($_POST["Tuesday"]) || !empty($_POST["Wednesday"]) || !empty($_POST["Thursday"]) || !empty($_POST["Friday"])){
+			
+		}
+	}
+
+
+?>
