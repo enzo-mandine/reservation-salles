@@ -28,19 +28,23 @@
 				<p id="" class="">Modifier le profil de <?php echo $_SESSION["login"]; ?></p>
 				<form class="flexc" action="profil.php" method="POST" enctype="multipart/form-data">
 
-					<!--
-					<label for="profilePic">Photo profil</label>
-					<input class="input" type="file" name="profilPic" value="" />
-					-->
+					<p>Photo de profil :</p>
+					<div class="fixpics">
+						<label for="profilePic">
+							<img class="profilePic" src="Images/baseusr.png">
+						</label>
+
+						<input class="" type="file" id="profilePic" />
+					</div>
 
 					<label for="login">Login</label>
 					<input class="mb15 input" type="text" name="login" value="<?php echo $_SESSION["login"]; ?>" required>
 
-					<label for="password">Password</label>
-					<input class="mb15 input" type="password" name="password" required>
-
 					<label for="Npassword">Nouveau mot de passe</label>
 					<input class="mb15 input" type="password" name="Npassword">
+
+					<label for="password">Password</label>
+					<input class="mb15 input" type="password" name="password" required>
 
 					<label for="passwordconfirm">Confirmez le mot de passe</label>
 					<input class="mb15 input" type="password" name="passwordconfirm" required>
