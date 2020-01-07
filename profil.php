@@ -27,11 +27,10 @@
 			<section id="box" class="">
 				<p id="" class="">Modifier le profil de <?php echo $_SESSION["login"]; ?></p>
 				<form class="flexc" action="profil.php" method="POST" enctype="multipart/form-data">
-
 					<p>Photo de profil :</p>
 					<div class="fixpics">
 						<label for="profilePic">
-							<img class="profilePic" src="Images/baseusr.png">
+							<img class="profilePic" src="ProfilPics/<?php echo $_SESSION["id"]?>.png">
 						</label>
 
 						<input class="" type="file" id="profilePic" />

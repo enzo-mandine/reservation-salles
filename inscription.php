@@ -26,15 +26,6 @@ if (isset($_POST["login"])) {
 			<section id="box" class="">
 				<p id="" class="">Veuillez vous enregistrer pour reserver.</p>
 				<form class="flexc" action="inscription.php" method="POST">
-					
-					<p>Photo de profil :</p>
-					<div class="fixpics">
-						<label for="profilePic">
-							<img class="profilePic" src="Images/baseusr.png">
-						</label>
-
-						<input class="" type="file" id="profilePic" />
-					</div>
 
 					<label for="login">Login</label>
 					<input class="mb15 input" type="text" name="login" placeholder="Login" required>
@@ -59,9 +50,9 @@ if (isset($_POST["submit"])) {
 	if ($_POST["password"] == $_POST["passwordconfirm"]) {
 		$result = sql_request("SELECT * FROM `utilisateurs` WHERE login = '" . $_POST["login"] . "'", true);
 		if (empty($result[0])) {
-			sql_request("INSERT INTO utilisateurs (`id`, `login`, `password`) 
+			sql_request("INSERT INTO utilisateurs (`id`, `login`, `password`, `avatar`) 
 							 VALUES (NULL, '" . htmlspecialchars($_POST["login"]) . "',
-							 '" . password_hash($_POST["password"], PASSWORD_DEFAULT) . "');");
+							 '" . password_hash($_POST["password"], PASSWORD_DEFAULT) . "', '".htmlspecialchars("0.png")."');");
 			header("location:connexion.php");
 		}
 	}

@@ -15,7 +15,6 @@
     //$request = "SELECT * FROM reservations WHERE id = '" . $_GET["id"] . "'";
     $request = "SELECT * FROM `reservations` INNER JOIN `utilisateurs` ON utilisateurs.id = reservations.id_utilisateur WHERE reservations.id = '" . $_GET["id"] . "'";
     $resultat = sql_request($request, true, true);
-    var_dump($resultat);
     ?>
     <main>
         <article id="box">

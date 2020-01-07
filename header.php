@@ -62,7 +62,10 @@ if (isset($_GET["error"])) {
 					<a class='' href='index.php?logout=true'>Deconnexion</a>
 				</li>
 				<li>
-					<a class='' href='profil.php'>Mon compte</a>
+					<div class="flexr">
+						<a class='mr15' href='profil.php'>Mon compte</a>
+						<img class="profilePicHead" src="ProfilPics/<?php echo $_SESSION["id"]?>.png">
+					</div>
 				</li>
 			<?php 	} else { ?>
 				<li class="">
