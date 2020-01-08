@@ -30,11 +30,11 @@
 		return true;
 	}
 	
-	function error($str)
+	function error($str, $link="")
 	{ ?>
 		<div id="greyScreen">
 			<div id="err">
-				<p><?php echo $str; ?><a href="index.php"><img src="Images/closeBtn.png"/></a></p>
+				<p><?php echo $str; ?><a href="<?php echo $link; ?>"><img src="Images/closeBtn.png"/></a></p>
 			</div>
 		</div>
 <?php 
