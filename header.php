@@ -38,7 +38,7 @@ if (isset($_SESSION["block"])) {
 				<li>
 					<div class="flexr">
 						<a class='mr15' href='profil.php'>Mon compte</a>
-						<img class="profilePicHead" src="ProfilPics/<?php echo $_SESSION["id"]?>.png">
+						<img class="profilePicHead" src="ProfilPics/<?php avatarcheck()?>">
 					</div>
 				</li>
 			<?php 	} else { ?>

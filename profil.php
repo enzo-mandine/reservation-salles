@@ -30,10 +30,10 @@
 					<p>Photo de profil :</p>
 					<div class="fixpics">
 						<label for="profilePic">
-							<img class="profilePic" src="ProfilPics/<?php echo $_SESSION["id"]?>.png">
+							<img class="profilePic" src="ProfilPics/<?php avatarcheck()?>">
 						</label>
 
-						<input class="" type="file" id="profilePic" />
+						<input class="" type="file" name="profilPic" id="profilePic" />
 					</div>
 
 					<label for="login">Login</label>

@@ -33,9 +33,9 @@
 						if(isset($_SESSION["id"])) {
 							if($_SESSION["id"] == $resultat[5]) {
 								?>
-									<div style="display:flex;">
-										<a href="reserved.php?id=<?php echo $resultat[0]; ?>&&deleted=true"><input type="button" class="res_slot" value="Supprimer"/></a>
-										<a href="reserved.php?id=<?php echo $resultat[0]; ?>&&modified=true"><input type="button" class="res_slot" value="Modifier"/></a>
+									<div class="fixpics">
+										<a href="reserved.php?id=<?php echo $resultat[0]; ?>&&deleted=true" class="mr15"><input type="button" class="res_slot mr15" value="Supprimer"/></a>
+										<a href="reserved.php?id=<?php echo $resultat[0]; ?>&&modified=true" class="mr15"><input type="button" class="res_slot mr15" value="Modifier"/></a>
 									</div>
 								<?php
 							}

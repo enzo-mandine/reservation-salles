@@ -23,7 +23,9 @@ echo "<h1 id='box' class='txt_center'>".date("F", $curTime)."</h1>";
 
 
 if (!isset($_GET["page"])) { ?>
+<div class="flexr flexend">
 	<a id="nextWeek" class="flexr flexend" href="planning.php?page=1"> <input type="button" class="btn" value="&#x2B9E"> </a>
+</div>
 	<?php
 } else {
 	if ($_GET["page"] > 1) { ?>

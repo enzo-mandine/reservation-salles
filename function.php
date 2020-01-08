@@ -70,4 +70,14 @@
 		echo "</td>";
 		
 	}
+
+	function avatarcheck()
+	{
+	$avatarname = "ProfilPics/".$_SESSION["id"].".png";
+		if (file_exists($avatarname)) {
+			echo $_SESSION["id"].".png";
+		} else {
+			echo "0.png";
+		}
+	}
 ?>
