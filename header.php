@@ -19,26 +19,6 @@ if (isset($_SESSION["block"])) {
 
 <?php
 }
-if (isset($_GET["error"])) {
-	if ($_GET["error"] == 0) {
-		error("Vous n'etes pas connecté", "connexion.php");
-	}
-	if ($_GET["error"] == 1) {
-		error("Vous etes déja connecté", "index.php");
-	}
-	if ($_GET["error"] == 2) {
-		error("Mauvais mot de passe ou login", "connexion.php");
-	}
-	if ($_GET["error"] == 3) {
-		error("Un évenement est déja enregistré a cette heure", "reservation-form.php");
-	}
-	if ($_GET["error"] == 4) {
-		error("Login déja pris", "inscription.php");
-	}
-	if ($_GET["error"] == 5) {
-		error("Les mots de passes ne correspondent pas", "inscription.php");
-	}
-}
 ?>
 
 <header>

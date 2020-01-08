@@ -18,7 +18,7 @@
 		die;
 	}
 	if (isset($_GET["profil"])) {
-		error("Changement effectués");
+		error("Changement effectués","profil.php");
 	}
 	?>
 
@@ -100,10 +100,10 @@ if (isset($_POST["submit"])) {
 
 			header("location:profil.php?profil=true");
 		} else {
-			header("location:profil.php?error=2");
+			error("Mauvais mot de passe", "profil.php");
 		}
 	} else {
-		header("location:profil.php?error=7");
+		error("Les mots de passes ne correspondent pas", "profil.php");
 	}
 }
 ?>

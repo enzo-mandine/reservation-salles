@@ -58,17 +58,17 @@ if (isset($_POST["submit"])) {
 			}
 			else
 			{
-				header("location:inscription.php?error=4");
+				error("Login déja pris", "inscription.php");
 			}
 		}
 		else
 		{
-			header("location:inscription.php?error=5");
+			error("Les mots de passes ne correspondent pas", "inscription.php");
 		}
 	}
 	else
 	{
-		error("Tous les champs doivent être remplis", "reservation-form.php");
+		error("Tous les champs doivent être remplis", "inscription.php");
 	}
 }
 ?>

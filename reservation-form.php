@@ -75,7 +75,7 @@
 			}
 			else
 			{
-				header("location:reservation-form.php?error=3");
+				error("Un évenement est déja enregistré a cette heure", "reservation-form.php");
 			}
 			
 		}
