@@ -19,6 +19,7 @@ if (isset($_POST["isconnected"])) {
 <body class="mp0">
 	<?php
 	include("header.php");
+	
 	if (isset($_GET["errorCo"])) {
 		if ($_GET["errorCo"] == 0) {
 			if (!isset($_SESSION["try"])) {
@@ -72,7 +73,7 @@ if (isset($_POST["submit"])) {
 
 		header("location:index.php");
 	} else {
-		header("location:connexion.php?error=0");
+		header("location:connexion.php?errorCo=0");
 	}
 }
 ?>
