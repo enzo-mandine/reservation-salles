@@ -59,12 +59,12 @@
 			if($_SESSION["id"] == $resultat[5]) {	?>
 					<div id="greyScreen">
 						<form action="" method="POST" id="err">
-							<label for="titre">Titre de l'évenement</label>
-							<input type="text" name="titre" value="<?php echo $resultat[1]; ?>" required>
-							<label for="desc">Description de mon évènement</label>
-							<textarea name="desc" placeholder="Décrivez votre évènement ici" required><?php echo $resultat[2] ?></textarea>
-							<input name="submitBtn" type="submit" value="Modifier">
 							<a href="reserved.php?id=<?php echo $resultat[0] ?>"><img src="Images/closeBtn.png"/></a>
+							<label for="titre">Titre de l'évenement</label>
+							<input class="input" type="text" name="titre" value="<?php echo $resultat[1]; ?>" required>
+							<label for="desc">Description de mon évènement</label>
+							<textarea class="txt_area" name="desc" placeholder="Décrivez votre évènement ici" required><?php echo $resultat[2] ?></textarea>
+							<input class="button gradient-border flexr center" name="submitBtn" type="submit" value="Modifier">
 						</form>
 					</div>
 				
