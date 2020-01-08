@@ -33,12 +33,9 @@ if (isset($_GET["error"])) {
 		error("Un évenement est déja enregistré a cette heure", "reservation-form.php");
 	}
 	if ($_GET["error"] == 4) {
-		error("Tous les champs doivent etres remplis", "index.php");
-	}
-	if ($_GET["error"] == 5) {
 		error("Login déja pris", "inscription.php");
 	}
-	if ($_GET["error"] == 6) {
+	if ($_GET["error"] == 5) {
 		error("Les mots de passes ne correspondent pas", "inscription.php");
 	}
 }

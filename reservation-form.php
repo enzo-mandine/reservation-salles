@@ -81,7 +81,7 @@
 		}
 		else
 		{
-			header("location:reservation-form.php?error=4");
+			error("Tous les champs doivent être remplis", "reservation-form.php");
 		}
 	}
 ?>

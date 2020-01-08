@@ -58,17 +58,17 @@ if (isset($_POST["submit"])) {
 			}
 			else
 			{
-				header("location:inscription.php?error=5");
+				header("location:inscription.php?error=4");
 			}
 		}
 		else
 		{
-			header("location:inscription.php?error=6");
+			header("location:inscription.php?error=5");
 		}
 	}
 	else
 	{
-		header("location:inscription.php?error=4");
+		error("Tous les champs doivent être remplis", "reservation-form.php");
 	}
 }
 ?>
