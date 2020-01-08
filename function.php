@@ -3,7 +3,6 @@
 	{
 		$conn = mysqli_connect("localhost","root","","reservationsalles");
 		$query = mysqli_query($conn,$request);
-		
 		if($isData)
 		{
 			if($isSingle)
@@ -12,7 +11,8 @@
 			}
 			else
 			{
-				return mysqli_fetch_all($query);				
+				// var_dump($request, mysqli_fetch_all($query));				
+				return mysqli_fetch_all($query);
 			}
 		}
 		mysqli_close($conn);
@@ -64,7 +64,7 @@
 		}
 		
 		if(!$is_reserved)	{ // Si la case n'a pas de réservation associé on affiche un bouton pour prendre une réservation
-			echo "<a href='reservation-form.php?id=".$reservation[3]."&&col=".$day."&&row=".$hour."&&curTime=".$curTime."'><input class='btn_add' type='button' value='+'></a>";
+			echo "<a href='reservation-form.php?col=".$day."&&row=".$hour."&&curTime=".$curTime."'><input class='btn_add' type='button' value='+'></a>";
 		}
 
 		echo "</td>";

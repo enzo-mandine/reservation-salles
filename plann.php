@@ -18,6 +18,7 @@ if(isset($_GET["page"])) {
 	$curTime =  strtotime("+".$_GET["page"]." week", $curTime); 
 }
 
+
 echo "<h1 id='box' class='txt_center'>".date("F", $curTime)."</h1>";
 
 
@@ -56,8 +57,9 @@ if (!isset($_GET["page"])) { ?>
 	$request_reservations = "SELECT titre, utilisateurs.login, date_format(debut,'%w %k %d %m'), reservations.id 
 							FROM reservations INNER JOIN utilisateurs ON reservations.id_utilisateur = utilisateurs.id
 							WHERE date_format(debut, '%Y%c%d') >= '".date("Ymd",$curTime)."'";
-	
 	$reservations = sql_request($request_reservations, true);
+	// var_dump(date("Ymd",$curTime), $reservations);
+	// var_dump(sql_request("SELECT date_format(debut, '%Y%c%d') FROM reservations", true));die;
 	
 	
 	/*

@@ -67,7 +67,7 @@
 
 	if(!isset($_SESSION["isconnected"]))
 	{
-		header("location:connexion.php");
+		error("Vous devez être connecté pour réserver", "connexion.php");
 	}
 
 	if(isset($_POST["submitBtn"]))
