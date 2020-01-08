@@ -57,14 +57,14 @@
 			// date correspond a la date relative a $curTime
 			if($reservation_day == $day && $reservation_hour == $hour && $reservation_date == date("d", strtotime("+".($day-1)." day",$curTime)) &&
 				$reservation_month == date("m", strtotime("+".($day-1)." day",$curTime)))	{?>
-				<a href='reserved.php?id=<?php echo $reservation[3]; ?>'><input class='res_slot' type='button' value="<?php echo $reservation[0]; ?>"></a> 
+				<a href="reserved.php?id=<?php echo $reservation[3]."&&col=".$day."&&row=".$hour; ?>"><input class='res_slot' type='button' value="<?php echo $reservation[0]; ?>"></a> 
 		<?php	$is_reserved = true; // On affiche le titre de la réservation dans un lien qui redirige vers la page de reservation
 									 // avec l'id de la reservation en get et on précise que la case est reservée avec $is_reserved
 			}						
 		}
 		
 		if(!$is_reserved)	{ // Si la case n'a pas de réservation associé on affiche un bouton pour prendre une réservation
-			echo "<a href='reservation-form.php'><input class='btn_add' type='button' value='+'></a>";
+			echo "<a href='reservation-form.php?id=".$reservation[3]."&&col=".$day."&&row=".$hour."&&curTime=".$curTime."'><input class='btn_add' type='button' value='+'></a>";
 		}
 
 		echo "</td>";

@@ -11,7 +11,22 @@
 </head>
 
 <body class="mp0">
-	<?php include("header.php"); ?>
+	<?php include("header.php");
+	
+		$row=$_GET["row"];
+		$col = $_GET["col"];
+		$curTime = $_GET["curTime"];
+		
+		$selected_date = date("Y-m-d", strtotime("+ ".($col-1)." days", $curTime));
+		if($row < 10) {
+			$row = "0".$row;
+			$selected_hour = $row.":00";			
+		}
+		else
+		{
+			$selected_hour = $row.":00";			
+		}
+	?>
 
 	<main>
 		<div id="box">
@@ -24,11 +39,11 @@
 						<br>
 						<label for="dateDebut">Date</label>
 						<br>
-						<input class="input mb15" type="date" name="dateDebut">
+						<input class="input mb15" type="date" name="dateDebut" value="<?php echo $selected_date; ?>">
 						<br>
 						<label for="hourDebut">Heure</label>
 						<br>
-						<input class="input mb15" type="time" min="08:00" max="18:00" name="hourDebut">
+						<input class="input mb15" type="time" min="08:00" max="18:00" name="hourDebut" value="<?php echo $selected_hour; ?>">
 					</div>
 					<div id="png_calendar"></div>
 				</div>
