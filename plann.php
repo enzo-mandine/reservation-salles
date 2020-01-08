@@ -56,8 +56,9 @@ if (!isset($_GET["page"])) { ?>
 	*/
 	$request_reservations = "SELECT titre, utilisateurs.login, date_format(debut,'%w %k %d %m'), reservations.id 
 							FROM reservations INNER JOIN utilisateurs ON reservations.id_utilisateur = utilisateurs.id
-							WHERE date_format(debut, '%Y%c%d') >= '".date("Ymd",$curTime)."'";
+							WHERE date_format(debut, '%Y%c%d') >= '".date("Ynd",$curTime)."' AND date_format(debut, '%Y%c%d') <= '".date("Ynd", strtotime("next monday", $curTime))."'";
 	$reservations = sql_request($request_reservations, true);
+	var_dump($reservations);
 	// var_dump(date("Ymd",$curTime), $reservations);
 	// var_dump(sql_request("SELECT date_format(debut, '%Y%c%d') FROM reservations", true));die;
 	
