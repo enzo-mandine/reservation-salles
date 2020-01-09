@@ -228,11 +228,9 @@ a {
 }
 
 #err {
-	position: absolute;
 	display: flex;
 	flex-direction: column;
-	top: 20vh;
-	left: 44vw;
+	align-self:center;
 	color: #5073b8;
 	margin: auto;
 	background-color: white;
@@ -244,6 +242,29 @@ a {
 }
 
 #err img {
+	width: 20px;
+	position: relative;
+	margin-right: 2px;
+	margin-bottom: 2px;
+	float: right;
+}
+
+
+#errForm {
+	display: flex;
+	flex-direction: column;
+	align-self:center;
+	color: #5073b8;
+	margin: auto;
+	background-color: white;
+	border-radius: 5px;
+	border: 2px solid #5073b8;
+	width: fit-content;
+	padding: 3px;
+	margin-top: 10%;
+}
+
+#errForm img {
 	width: 20px;
 	position: relative;
 	margin-right: 2px;

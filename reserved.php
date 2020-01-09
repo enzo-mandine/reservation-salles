@@ -61,7 +61,7 @@
 		if(isset($_GET["modified"])) {
 			if($_SESSION["id"] == $resultat[5]) {	?>
 					<div id="greyScreen">
-						<form action="" method="POST" id="err">
+						<form action="" method="POST" id="errForm">
 							<a href="reserved.php?id=<?php echo $resultat[0] ?>"><img src="Images/closeBtn.png"/></a>
 							<label for="titre">Titre de l'évenement</label>
 							<input class="input" type="text" name="titre" value="<?php echo $resultat[1]; ?>" required>
