@@ -26,7 +26,12 @@
 		{
 			$selected_hour = $row.":00";			
 		}
-		$selected_hourfin = ($_GET["row"]+1).":00";
+
+		 if (($_GET["row"]+1) < 10) {
+			$selected_hourfin = "0".($_GET["row"]+1).":00";
+		 } else {
+			$selected_hourfin =($_GET["row"]+1).":00";
+		 }
 	?>
 
 	<main>
@@ -44,9 +49,9 @@
 						<br>
 						<label for="hourDebut">Heure</label>
 						<br>
-						<input class="input mb15" type="time" min="08:00" max="18:00" name="hourDebut" value="<?php echo $selected_hour; ?>">
+						<input class="input mb15" type="time" min="08:00" max="18:00" name="hourDebut" value="<?php echo $selected_hour; ?>" readonly>
 						<br>
-						<input class="input mb15" type="time" min="08:00" max="18:00" name="hourFin" value="<?php echo $selected_hourfin; ?>">
+						<input class="input mb15" type="time" min="08:00" max="18:00" name="hourFin" value="<?php echo $selected_hourfin; ?>" readonly>
 					</div>
 					<div id="png_calendar"></div>
 				</div>
