@@ -10,8 +10,11 @@
 </head>
 
 <body class="mp0">
-    <?php include("header.php"); ?>
-    <?php
+	<?php include("header.php");
+	
+	if ($_SESSION["isconnected"] == false) {
+		header("location:index.php");
+	}
     //$request = "SELECT * FROM reservations WHERE id = '" . $_GET["id"] . "'";
     $request = "SELECT * FROM `reservations`
 				INNER JOIN `utilisateurs` ON utilisateurs.id = reservations.id_utilisateur 

@@ -14,18 +14,20 @@
 
 	<?php include("header.php"); ?>
 	<main>
-		<article id="intro">
-			<p>Bienvenu sur le site de réservation des salles vidéo/audio de La Plateforme_ !<br /> Pour <a href="planning.php">réserver</a> vous devez vous <a href="inscription.php"> inscrire</a>.<br />Vous réservez des créneaux d'une heure de 8h a 18h du lundi au vendredi</p>
-		</article>
-		<a href=<?php if (isset($_SESSION["isconnected"])) {
-					echo "planning.php";
-				} else {
-					echo "connexion.php";
-				} ?>>
-			<article id="box" class="flexc gradient-border">
-				<p class="txt_center font15pt">Bienvenue sur le site de reservation de la salle vidéo</p>
+		<div id="alignindex">
+			<article id="intro">
+				<p>Bienvenu sur le site de réservation des salles vidéo/audio de La Plateforme_ !<br /> Pour <a href="planning.php">réserver</a> vous devez vous <a href="inscription.php"> inscrire</a>.<br />Vous réservez des créneaux d'une heure de 8h a 18h du lundi au vendredi</p>
 			</article>
-		</a>
+			<a href=<?php if (isset($_SESSION["isconnected"])) {
+						echo "planning.php";
+					} else {
+						echo "connexion.php";
+					} ?>>
+				<div class="mt15">
+					<input type="submit" class="button gradient-border flexc center" value="Continuer"></input>
+				</div>
+			</a>
+		</div>
 	</main>
 	<?php include("footer.php"); ?>
 </body>

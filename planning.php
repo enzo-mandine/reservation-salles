@@ -17,6 +17,11 @@
             <div id="include_table" class="flexc">
                 <?php include("plann.php"); ?>
             </div>
+            <footer id="foot2" class="flexr">
+                <div class="center">
+                    <p class="txt_foot"><a class="a_style" href="www.laplateforme.io">©Laplateforme</a> 2019 - Joldine Samzo</p>
+                </div>
+            </footer>
         </main>
     </div>
 </body>

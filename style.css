@@ -25,6 +25,15 @@ header {
 	height: 3vh;
 	width: 100%;
 }
+
+#alignindex {
+	margin-top: 30vh;
+}
+
+.mt15 {
+	margin-top: 15px;
+}
+
 .fixpics {
 	display: flex;
 	justify-content: center;
@@ -57,7 +66,8 @@ header {
 	margin-right: 15px;
 }
 
-footer {
+#foot {
+	width: 100%;
 	display: flex;
 	justify-content: center;
 	background-color: #88c0d0c5;
@@ -66,8 +76,13 @@ footer {
 	bottom: 0;
 }
 
-#foot {
+#foot2 {
 	width: 100%;
+	display: flex;
+	justify-content: center;
+	background-color: #88c0d0c5;
+	height: 3vh;
+	margin-top: 300px;
 }
 
 .txt_foot {

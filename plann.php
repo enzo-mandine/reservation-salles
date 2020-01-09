@@ -92,7 +92,7 @@ if (!isset($_GET["page"])) { ?>
 			}
 			else if($hour > 7 && $day == 0) // Si c'est la deuxieme (ou plus) ligne et la premiere colonne
 			{
-				echo "<td>".$hour."h</td>"; // On affiche l'heure
+				echo "<td><b>".$hour."h</b></td>"; // On affiche l'heure
 			}
 			else if($day == 0 && $hour == 7) // Si c'est la premiere ligne et la premiere colonne
 			{
