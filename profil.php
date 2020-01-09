@@ -1,88 +1,61 @@
-<?php
-
-	if(isset($_POST["isconnected"]))
-	{
-		header("index.php");
-	}
-	
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
 
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta http-equiv="X-UA-Compatible" content="ie=edge">
-		<link rel="stylesheet" href="style.css">
-		<link href="https://fonts.googleapis.com/css?family=Caveat|Open+Sans|Roboto&display=swap" rel="stylesheet">
-		<title>Inscription</title>
-	</head>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="style.css">
+	<link href="https://fonts.googleapis.com/css?family=Caveat|Open+Sans|Roboto&display=swap" rel="stylesheet">
+	<title>Mon Compte</title>
+</head>
 
-	<body class="mp0">
-		<?php 
-			include("header.php");
-			if(isset($_GET["error"]))
-			{
-				if($_GET["error"] == 0)
-				{ ?>
-				
-					<div id="greyScreen">
-						<p id="err">Login déja pris <a href="profil.php"><img src="Images/closeBtn.png"/></a></p>
-					</div>
-				
-<?php			}
-				else if($_GET["error"] == 1)
-				{?>
-					
-					<div id="greyScreen">
-						<p id="err">Le mot de passe n'est pas valide<a href="profil.php"><img src="Images/closeBtn.png"/></a></p>
-					</div>
-					
-<?php			}
-				else if($_GET["error"] == 2)
-				{ ?>
-					
-					<div id="greyScreen">
-						<p id="err">Les mot de passes ne correspondent pas <a href="profil.php"><img src="Images/closeBtn.png"/></a></p>
-					</div>
-					
-<?php			}
-			}
+<body class="mp0">
+	<?php
+	include("header.php");
+	if (!isset($_SESSION["login"])) {
+		header("location:index.php");
+		die;
+	}
+	if (isset($_GET["profil"])) {
+		error("Changement effectués","profil.php");
+	}
+	?>
 
-		?>
-			
-		
-		<main>
-			<div id="" class="">
-				<section id="" class="">
-					<p id="" class="">Profil de <?php echo $_SESSION["login"]; ?></p>
-					<form class="" action="" method="POST">
-						
-						<label for="login">Login</label>
-						<input class="" type="text" name="login" value="<?php echo $_SESSION["login"]; ?>" required>
-						
-						<label for="password">Password</label>
-						<input class="" type="password" name="password" required>
-						
-						<label for="passwordconfirm">Confirmez le password</label>
-						<input class="" type="password" name="passwordconfirm"  required>
-						
-						<label for="Npassword">Nouveau mot de passe</label>
-						<input class="" type="password" name="Npassword" >
-						
-						<input id="" class="" name="submit" type="submit" value="inscription">
-					</form>
-				</section>
-			</div>
-		</main>
-		
-		<footer>
-			<div id="" class="">
-				<p class="">Réservations de salles - Laplateforme</p>
-			</div>
-		</footer>
-	</body>
+	<main>
+		<div id="" class="">
+			<section id="box" class="">
+				<p id="" class="">Modifier le profil de <?php echo $_SESSION["login"]; ?></p>
+				<form class="flexc" action="profil.php" method="POST" enctype="multipart/form-data">
+					<p>Photo de profil :</p>
+					<div class="fixpics">
+						<label for="profilePic">
+							<img class="profilePic" src="ProfilPics/<?php avatarcheck()?>">
+						</label>
+
+						<input class="" type="file" name="profilPic" id="profilePic" />
+					</div>
+
+					<label for="login">Login</label>
+					<input class="mb15 input" type="text" name="login" value="<?php echo $_SESSION["login"]; ?>" required>
+
+					<label for="Npassword">Nouveau mot de passe</label>
+					<input class="mb15 input" type="password" name="Npassword">
+
+					<label for="password">Password</label>
+					<input class="mb15 input" type="password" name="password" required>
+
+					<label for="passwordconfirm">Confirmez le mot de passe</label>
+					<input class="mb15 input" type="password" name="passwordconfirm" required>
+
+					<input id="" class="button gradient-border" name="submit" type="submit" value="Modifier">
+				</form>
+			</section>
+		</div>
+	</main>
+
+	<?php include("footer.php"); ?>
+</body>
 
 </html>
 
@@ -90,47 +63,47 @@
 
 
 <?php
+if (isset($_POST["submit"])) {
+	if ($_POST["password"] == $_POST["passwordconfirm"]) {
+		if (strlen($_FILES["profilPic"]["name"]) != 0) {
+			$imgPath = "ProfilPics/" . basename($_FILES["profilPic"]["name"]);
+			$imgType = strtolower(pathinfo($imgPath, PATHINFO_EXTENSION));
+			$newName = "ProfilPics/" . $_SESSION["id"] . "." . $imgType;
 
-	if(isset($_POST["submit"]))
-	{
-		if($_POST["password"] == $_POST["passwordconfirm"])
-		{
-			$res = sql_request("SELECT login, password FROM utilisateurs WHERE id = '".$_SESSION["id"]."'",true,true);
-			
-			if(password_verify($_POST["password"], $res[1]))
-			{
-				if($_POST["login"] != $res[0])
-				{
-					$res = sql_request("SELECT login FROM utilisateurs WHERE login = '".$_POST["login"]."'", true, true);
-					
-					if(empty($res[0]))
-					{
-						sql_request("UPDATE utilisateurs SET login = '".$_POST["login"]."' WHERE id = '".$_SESSION["id"]."'");
-						$_SESSION["login"] = $_POST["login"];
-					}
-					else
-					{
-						header("location:profil.php?error=0");
-					}
-				}
+			if (file_exists($newName)) {
+				unlink($newName);
+			}
 
-				if(!empty($_POST["Npassword"]))
-				{
-					sql_request("UPDATE utilisateurs SET password = '".password_hash($_POST["Npassword"],PASSWORD_BCRYPT)."'
-								 WHERE id = '".$_SESSION["id"]."'");
+			move_uploaded_file($_FILES["profilPic"]["tmp_name"], $imgPath);
+			rename($imgPath, $newName);
+
+			sql_request("UPDATE utilisateurs SET image ='" . $newName . "' WHERE id =" . $_SESSION["id"]);
+		}
+		$res = sql_request("SELECT login, password FROM utilisateurs WHERE id = '" . $_SESSION["id"] . "'", true, true);
+
+		if (password_verify($_POST["password"], $res[1])) {
+			if ($_POST["login"] != $res[0]) {
+				$res = sql_request("SELECT login FROM utilisateurs WHERE login = '" . $_POST["login"] . "'", true, true);
+
+				if (empty($res[0])) {
+					sql_request("UPDATE utilisateurs SET login = '" . htmlspecialchars($_POST["login"]) . "' WHERE id = '" . $_SESSION["id"] . "'");
+					$_SESSION["login"] = $_POST["login"];
+				} else {
+					header("location:profil.php?error=5");
 				}
-				
-				header("location:profil.php?profil=true");
 			}
-			else
-			{
-				header("location:profil.php?error=1");
+
+			if (!empty($_POST["Npassword"])) {
+				sql_request("UPDATE utilisateurs SET password = '" . password_hash($_POST["Npassword"], PASSWORD_BCRYPT) . "'
+								 WHERE id = '" . $_SESSION["id"] . "'");
 			}
+
+			header("location:profil.php?profil=true");
+		} else {
+			error("Mauvais mot de passe", "profil.php");
 		}
-		else
-		{
-			header("location:profil.php?error=2");
-		}
+	} else {
+		error("Les mots de passes ne correspondent pas", "profil.php");
 	}
-	
+}
 ?>
