@@ -1,7 +1,7 @@
 <?php
 	function sql_request(string $request, bool $isData = false, bool $isSingle = false)
 	{
-		$conn = mysqli_connect("localhost","root","","reservationsalles");
+		$conn = mysqli_connect("localhost:3306", "enzo-ressalles", "3SG1t13R", "enzo-mandine_reservationsalles");
 		$query = mysqli_query($conn,$request);
 		if($isData)
 		{
